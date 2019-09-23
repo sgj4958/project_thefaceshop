@@ -1,0 +1,1174 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" sizes="16x16 32x32" href="data/graphic/favicon.ico">
+<title>THE FACE SHOP REMAKE</title>
+    <link href="header.css" type="text/css" rel="stylesheet">
+    <link href="footer.css" type="text/css" rel="stylesheet">
+    <link href="common.css" type="text/css" rel="stylesheet">
+    
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
+    <style>
+        .wrap {overflow-x: hidden;}
+        
+        .slideshow-container, .main_bar {min-width: 1900px;}
+        
+        
+        .main_bar {height: 41px; width: 100%; background-color: #3b322b; }
+        
+        .best_seller, .section_sns, .kakao, .review, .sns, .footer, .section_newsletter {margin-top: 150px;}
+        
+        h1 {font-size: 1.5em; color: #6d9811; margin-bottom: 20px;}
+        
+        
+        .best_seller li {display: inline-block; width: 250px; overflow: hidden; position: relative; margin: 0 1.5%; border: 1px solid #ddd;}
+        .shinny {
+            position: absolute;
+            width: 200%;
+            height: 50px;
+            top: -20px;
+            left: 0;
+            background-color: rgba(255,255,255,0.7);
+            opacity: 0;
+            transform: rotate(-45deg);
+            transform-origin: left;
+        }
+        .best_seller li:hover .shinny {
+            opacity: 1;
+            animation-name: shinny;
+            animation-duration: 1.5s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes shinny {
+            from {top: -20px;}
+            to {top: 600px;}
+        }
+        
+        .sub_fade_wrap {position: absolute; z-index: 90; left: 0; bottom: 0; width: 100%;}
+        .sub_fade {animation-name: sub_fade; animation-duration: 1s;}
+        @keyframes sub_fade {
+            0% {height: 0;}
+            50% {background-color: rgba(0,0,0,0.3); height: 100%;}
+            100% {height: 0;}
+        }
+        
+        .best_seller ul {text-align: center; position: relative;}
+        
+        #best_seller_slide_btn_left, #best_seller_slide_btn_right {
+            color: #6d9811; 
+            font-size: 1.5em;
+        } 
+        #best_seller_slide_btn_left_wrap, #best_seller_slide_btn_right_wrap {
+            position: absolute; 
+            top: 50%; 
+            cursor: pointer;
+        } 
+        #best_seller_slide_btn_right_wrap:hover #best_seller_slide_btn_right {
+            transform: translateX(-100%);
+            animation-name: best_seller_slide_btn_right;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes best_seller_slide_btn_right {
+            100% {transform: translateX(0);}
+        }
+        #best_seller_slide_btn_left_wrap:hover #best_seller_slide_btn_left {
+            transform: translateX(100%);
+            animation-name: best_seller_slide_btn_left;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes best_seller_slide_btn_left {
+            100% {transform: translateX(0);}
+        }
+        #best_seller_slide_btn_left_wrap {left: 0;}
+        #best_seller_slide_btn_right_wrap {right: 0;}
+        
+        .best_seller .btn_blog, .best_seller .desc, .best_seller .price {text-align: left;}
+        
+        .best_seller .btn_blog {font-size: 16px; color: #bea36b; display: block; font-weight: 900;}
+        .best_seller .btn_blog:after {
+            content: "";
+            position: relative;
+            top: -2px;
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background: url(data/graphic/ico_more2.png) no-repeat center center;
+            background-size: contain;
+            vertical-align: middle;
+            margin-left: 6px;
+        }
+        .best_seller .desc {
+            font-size: 16px;
+            color: #000;
+            display: block;
+            padding: 15px 0 25px;
+            line-height: 28px;
+            max-height: 20px;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+        .word {border-top: 1px solid #ddd; padding: 30px 26px 40px;}
+        .more {
+            float: right; 
+            border: 2px solid #bea36b; 
+            font-size: 0.8em; 
+            padding: 5px 10px; 
+            color: #bea36b; 
+            margin-right: 3%; 
+            font-weight: bold; 
+            margin-bottom: 20px; 
+            transition: 0.3s;
+        }
+        .more:hover {background-color: #bea36b; color: white;}
+        .best_seller .bg {position: relative;}
+        .best_seller .bg_best {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70px;
+            height: 70px;
+            background: url(data/graphic/ico_bestseller.png) no-repeat center center;
+            background-size: contain;
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #6d9811;
+            line-height: 63px;
+        }
+        
+        .sale {
+            position: absolute;
+            color: white; 
+            background-color: red;
+            right: 0;
+            top: 0;
+            padding: 3px 6px;
+            font-size: 0.8em;
+            font-weight: bold;
+            animation-name: sale;
+            animation-iteration-count: infinite;
+            animation-duration: 2s;
+        }
+        @keyframes sale {
+            0% {transform: rotate(0deg);}
+            30% {transform: rotate(10deg);}
+            45% {transform: rotate(-5deg);}
+            50% {transform: rotate(3deg);}
+            60% {transform: rotate(-1deg);}
+            70% {transform: rotate(0deg);}
+            100% {}
+        }
+        .sale_price {
+            color: #aaa; 
+            text-decoration: line-through; 
+            margin-right: 5px; 
+            font-size: 0.9em;
+        }
+        
+        div.kakao div.main_image {
+            background: url(data/graphic/%EB%A9%94%EC%9D%B8%EC%84%9C%EB%B8%8C%EC%9D%B4%EB%AF%B8%EC%A7%80.jpg) no-repeat center center; 
+            width: 1200px; 
+            height: 500px; 
+            background-size: contain;
+            position: relative;
+        }
+        .kakao .main_image .mainimage_movingbox{
+            position: absolute;
+            left: 23px;
+            height: 3px;
+            width: 0;
+            transition: 1s;
+        }
+        .kakao .main_image .mainimage_movingbox:nth-child(1) {top: 65px; background-color: black;}
+        .kakao .main_image .mainimage_movingbox:nth-child(2) {top: 120px; background-color: #076f3a;}
+        .kakao .main_image .mainimage_movingbox:nth-child(3) {top: 160px; background-color: #076f3a;}
+        
+        .kakao .main_image:hover .mainimage_movingbox {transition: 1s; transition-timing-function: ease-in-out;}
+        .kakao .main_image:hover .mainimage_movingbox:nth-child(1) {width: 540px;}
+        .kakao .main_image:hover .mainimage_movingbox:nth-child(2) {width: 330px; transition-delay: 0.3s;}
+        .kakao .main_image:hover .mainimage_movingbox:nth-child(3) {width: 290px; transition-delay: 0.1s;}
+        
+        .kakao li {display: inline-block; width: 250px; border: 1px solid #cccccc; margin: 0 1.7%; position: relative;}
+        .kakao .copy {width: 100%; padding: 30px 26px 40px; box-sizing: border-box;}
+        .kakao .btn_blog {font-size: 16px; color: #bea36b; display: block; font-weight: 600;}
+        div.kakao .desc {
+            font-size: 16px;
+            color: #000;
+            display: block;
+            padding: 15px 0 25px;
+            line-height: 28px;
+            max-height: 20px;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+        
+        .kakao_li_border_bottom, .kakao_li_border_left, .kakao_li_border_top, .kakao_li_border_right {background-color: #6d9811; width: 0; height: 0; transition-duration: 1s;}
+        
+        .kakao_li_border_bottom {position: absolute; left: 0; bottom: -1px;} 
+        .kakao_li_border_right {position: absolute; right: -1px; bottom: 0;} 
+        .kakao_li_border_top {position: absolute; right: 0; top: -1px;} 
+        .kakao_li_border_left {position: absolute; left: -1px; top: 0;}
+        .kakao li:hover .kakao_li_border_bottom, .kakao li:hover .kakao_li_border_top {height: 2px; width: 100%;  transition: width 0.2s;}
+        .kakao li:hover .kakao_li_border_right, .kakao li:hover .kakao_li_border_left {width: 2px; height: 100%; transition: height 0.2s; transition-delay: 0.2s;}
+        
+        
+        .kakao .price:before, .best_seller .price:before {
+            content: ""; 
+            display: inline-block; 
+            background: url(data/graphic/krw.png) no-repeat center center; 
+            width: 20px; 
+            height: 20px; 
+            background-size: contain; 
+            position: relative; 
+            top: 4px; 
+            margin-right: 5px;
+        }
+        
+        .price {display: block; color: goldenrod; font-weight: 700;}
+        
+        .bg {width: 250px; height: 250px; background-size: cover; background-position: center center;}
+        
+        
+        .review .img {width: 300px; height: 300px; background-size: cover; background-position: center center; position: relative;}
+        .review iframe, .review div.img {float: left;}
+        .review_inner {
+            position: absolute; 
+            bottom: 0px; 
+            padding: 20px; 
+            box-sizing: border-box; 
+            background-color: rgba(0,0,0,0.5); 
+            height: 45%;
+        }
+        .review .review_star {color: #6d9811; font-size: 1.1em;}
+        .review .review_writer {font-size: 0.8em; font-weight: 700; margin: 10px 0; color: white;}
+        .review .review_word {font-size: 0.8em; max-height: 35%; overflow: hidden; color: white;}
+        .multiline_ellipsis {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+        .review .img:hover .review_inner {
+            border-radius: 50px 50px 0 0; 
+            transition: border-radius 1s; 
+            animation-name: review_ani; 
+            animation-duration: 1.5s; 
+            animation-iteration-count: 2;
+        }
+        
+        div.sns li {
+            background-size: contain; 
+            background-position: center center; 
+            width: 30px; 
+            height: 30px; 
+            display: inline-block;
+        }
+        
+        div.sns li div.copy {
+            background-size: contain; 
+            background-position: center center; 
+            width: 30px; 
+            height: 30px; 
+            display: none;
+        }
+        div.sns li:hover div.copy {display: block;}
+        
+        .section_newsletter *{transition: all 0.6s ease;}
+        .section_newsletter li {
+            float: left;
+            width: 250px;
+            position: relative;
+            overflow: hidden;
+            perspective: 50em;
+        }
+        .section_newsletter ul {overflow: hidden;}
+        .section_newsletter .wrap_top li {margin-left: 250px;}
+        .section_newsletter .wrap_bottom li {margin-right: 250px;}
+        .section_newsletter .inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%; 
+            padding: 30px 26px 40px;
+            background-color: rgba(0,0,0,1);
+            transform: rotateX(90deg);
+            transform-origin: 50% 100%;
+            opacity: 0;
+            z-index: 1;
+            border: 3px solid #6d9811;
+            box-sizing: border-box;
+        }
+        .section_newsletter .title {font-size: 16px; color: #bea36b; display: block; font-weight: 600;}
+        .section_newsletter .desc {
+            font-size: 16px;
+            color: #fff;
+            display: block;
+            padding: 15px 0 25px;
+            width: 100%;
+        }
+        .section_newsletter .bg {opacity: 1; transform-origin: 50% 0;}
+        .section_newsletter li:hover .bg {transform: rotateX(-90deg); opacity: 0;}
+        .section_newsletter li:hover .inner {transform: rotateX(0deg); opacity: 1; transition-delay: 0.2s;}
+        
+        
+        
+        /* -----메인 슬라이드----- */
+div.slideshow-container *{box-sizing:border-box}
+
+.mySlides {display: none; max-width: 100%; min-height: 852px; background-color: #3b322b; overflow: hidden;}
+img {vertical-align: middle;}
+.slideshow-container {position: relative; margin: auto;}
+
+.prev, .next {
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 50% 50% 0;
+    user-select: none;
+    line-height: 852px;
+    }
+
+.next {right: 0; border-radius: 50% 0 0 50%;}
+
+.prev:hover, .next:hover {background-color: rgba(0,0,0,0.8);}
+
+.numbertext {
+    color: #f2f2f2;
+    font-size: 16px;
+    padding: 0 12px;
+    position: absolute;
+    top: 0;
+    line-height: 41px;
+    font-weight: 900;
+    }
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {background-color: #6d9811;}
+.slide_text_wrap {position: absolute; bottom: 0px; left: 0px; width: 100px;}
+
+.fade {animation-name: fade; animation-duration: 1.5s;}
+        
+@keyframes fade {
+  from {opacity: .1;} 
+  to {opacity: 1;}
+}
+
+        @keyframes review_ani {
+            0% {}
+            25% {transform: translateY(10px);}
+            100% {}
+        }
+        
+        div.section_sns li .copy .copy_inner {
+            padding: 30px 26px 40px;
+            background-color: rgba(0,0,0,0.8);
+            box-sizing: border-box;
+            transform: translate(0, 100%);
+            transition: transform 0.4s;
+        }
+        div.section_sns li .copy .copy_inner:before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #6d9811;
+        }
+        div.section_sns li .copy .btn_blog {font-size: 16px; color: #bea36b; display: block; font-weight: 900;}
+        div.section_sns li .copy .btn_blog:after {
+            content: "";
+            position: relative;
+            top: -2px;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: url(data/graphic/ico_more1.png) no-repeat center center;
+            background-size: contain;
+            vertical-align: middle;
+            margin-left: 6px;
+        }
+        div.section_sns li .copy .desc {
+            font-size: 16px;
+            color: #fff;
+            display: block;
+            padding: 15px 0 25px;
+            line-height: 28px;
+            max-height: 20px;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+        .section_sns li {position:relative; display: inline-block; overflow: hidden;}
+        .section_sns li:first-child {margin-left: 0;}
+        .section_sns ul {text-align: center;}
+        .section_sns .btn_blog, .section_sns .desc, .section_sns .price {text-align: left;}
+            
+        div.section_sns li .copy {position:absolute; bottom:0; left:0; width:100%;}
+        
+        div.section_sns li:hover .copy .copy_inner {
+            transform: translate(0, 0);
+        }
+        .instagram:before, .blog:before, .post:before, .youtube:before {
+            content: ""; 
+            display: inline-block; 
+            width: 20px; 
+            height: 20px; 
+            background-size: contain; 
+            position: relative; 
+            top: 4px; 
+            margin-right: 5px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .instagram:before {
+            background-image: url(data/graphic/ico-instagram2.png);}
+        .post:before {
+            background-image: url(data/graphic/ico-facebook2.png);}
+        .blog:before {
+            background-image: url(data/graphic/ico-blog2.png);}
+        .youtube:before {
+            background-image: url(data/graphic/ico-youtube2.png);}
+        .section_sns .bg {transition: all 0.5s ease-in-out;}
+        .section_sns li:hover .bg {transform: scale(1.15);}
+        
+        .section_sns li {z-index: 2; border-radius: 5%;}
+        .section_sns_preview {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 15%;
+            z-index: 0;
+            background-size: cover; 
+            background-position: center center;
+            cursor: pointer;
+            border-radius: 5%;
+            animation-duration: 1s;
+            animation-iteration-count: 1;
+        }
+        .section_sns_preview:nth-of-type(1) {left: 12%; transform: scale(0.8); z-index: 0; cursor: default;}
+        .section_sns_preview:nth-of-type(2) {left: 25%; z-index: 1;}
+        .section_sns_preview:nth-of-type(3) {right: 25%; z-index: 1;}
+        .section_sns_preview:nth-of-type(4) {right: 12%; transform: scale(0.8); z-index: 0; cursor: default;}
+        
+        .to_right {animation-name: to_right; animation-duration: 1s;}
+        @keyframes to_right {
+            0% {transform: translateX(-50%) scale(0.8);}
+            100% {transform: translateX(0%) scale(1);}
+        }
+        .to_left {animation-name: to_left; animation-duration: 1s;}
+        @keyframes to_left {
+            0% {transform: translateX(50%) scale(0.8);}
+            100% {transform: translateX(0%) scale(1);}
+        }
+        .section_sns_preview:nth-of-type(2):hover {
+            transform: translateX(-10%);
+            animation-name: best_seller_slide_btn_right;
+        }
+        @keyframes best_seller_slide_btn_right {
+            100% {transform: translateX(0);}
+        }
+        .section_sns_preview:nth-of-type(3):hover {
+            transform: translateX(10%);
+            animation-name: best_seller_slide_btn_left;
+        }
+        @keyframes best_seller_slide_btn_left {
+            100% {transform: translateX(0);}
+        }
+        
+        
+    </style>
+    
+</head>
+<body>
+    
+    
+
+    <div id="navigation"></div>
+    
+    
+    <!--
+    <div style="background: url(data/graphic/48655154-%EB%B0%94%EB%8B%B7%EA%B0%80.jpg); width: 1920px; height: 852px; background-repeat: no-repeat; background-size: cover; background-position: center center;"><div style="background: url(data/graphic/%EB%A9%94%EC%9D%B8%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%AC%B8%EA%B5%AC.png) no-repeat center center; width: 1920px; height: 852px;"></div></div>
+    -->
+    
+    <!-- -----메인 슬라이드---- -->
+    <div id="main">
+        
+<div class="slideshow-container">
+
+<div class="mySlides fade" style="display: inherit;">
+  <a href="javascript:;"><img src="data/graphic/main_image.jpg"></a>
+    <div class="slide_text_wrap">
+        <div class="numbertext">1 / 3</div>
+    </div>
+</div>
+
+<div class="mySlides fade">
+  <a href="javascript:;"><img src="data/graphic/main_image2.jpg"></a>
+    <div class="slide_text_wrap">
+        <div class="numbertext">2 / 3</div>
+    </div>
+</div>
+    
+<div class="mySlides fade" style="text-align: center; padding-top: 5%;">
+  <a href="javascript:;"><img src="data/graphic/sale_end_banner.jpg"></a>
+    <div class="slide_text_wrap">
+        <div class="numbertext">3 / 3</div>
+    </div>
+</div>
+    
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+    
+    <div class="main_bar">
+        <div style="text-align: center; line-height: 41px;">
+            <span class="dot" onclick="currentSlide(1)"></span> 
+            <span class="dot" onclick="currentSlide(2)"></span> 
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+        
+    </div>
+        
+    <div class="wrap">
+        
+        <div class="best_seller flying_ani">
+            <h1>BEST SELLER</h1>
+            <div style="overflow: hidden;">
+            <a href="sub_product.html"><div class="more">MORE &#10095;</div></a>
+            </div>
+                <ul>
+                    <li class="best_seller_slide">
+                        <a href="sub_product.html">
+                        <div class="sub_fade_wrap sub_fade"></div>
+                        <div class="bg" style="background-image: url(data/graphic/best1.jpg);">
+                            <div class="shinny"></div>
+                            <div class="bg_best">1</div>
+                            <div class="sale">10% SALE</div>
+                        </div>
+                        <div class="word">
+                            <div class="btn_blog">닥터벨머</div>
+                            <span class="desc">비타 세린 톤결 세럼</span>
+                            <span class="price"><span class="sale_price">24,900</span>22,400</span>
+                        </div></a>
+                    </li>
+                    <li class="best_seller_slide">
+                        <a href="sub_product.html">
+                        <div class="sub_fade_wrap sub_fade"></div>
+                        <div class="bg" style="background-image: url(data/graphic/best2.jpg);">
+                            <div class="shinny"></div>
+                            <div class="bg_best">2</div>
+                        </div>
+                        <div class="word">
+                            <div class="btn_blog">더페이스샵</div>
+                            <span class="desc">디자이닝 아이브로우</span>
+                            <span class="price">22,400</span>
+                        </div></a>
+                    </li>
+                    <li class="best_seller_slide">
+                        <a href="sub_product.html">
+                        <div class="sub_fade_wrap sub_fade"></div>
+                        <div class="bg" style="background-image: url(data/graphic/best3.jpg);">
+                            <div class="shinny"></div>
+                            <div class="bg_best">3</div>
+                        </div>
+                        <div class="word">
+                            <div class="btn_blog">닥터벨머</div>
+                            <span class="desc">어드밴스드 시카 수분 크림</span>
+                            <span class="price">22,400</span>
+                        </div></a>
+                    </li>
+                    <li class="best_seller_slide">
+                        <a href="sub_product.html">
+                        <div class="sub_fade_wrap sub_fade"></div>
+                        <div class="bg" style="background-image: url(data/graphic/best4.jpg);">
+                            <div class="shinny"></div>
+                            <div class="bg_best">4</div>
+                        </div>
+                        <div class="word">
+                            <div class="btn_blog">망고씨드</div>
+                            <span class="desc">실크보습 클렌징 티슈</span>
+                            <span class="price">8,000</span>
+                        </div></a>
+                    </li>
+                    
+                    <li class="best_seller_slide">
+                        <a href="sub_product.html">
+                        <div class="sub_fade_wrap sub_fade"></div>
+                        <div class="bg" style="background-image: url(data/graphic/best5.jpg);">
+                            <div class="shinny"></div>
+                            <div class="bg_best">5</div>
+                        </div>
+                        <div class="word">
+                            <div class="btn_blog">REAL NATURE</div>
+                            <span class="desc">갈아만든 마스크시트</span>
+                            <span class="price">1,000</span>
+                        </div></a>
+                    </li>
+                    <li class="best_seller_slide">
+                        <a href="sub_product.html">
+                        <div class="sub_fade_wrap sub_fade"></div>
+                        <div class="bg" style="background-image: url(data/graphic/best6.jpg);">
+                            <div class="shinny"></div>
+                            <div class="bg_best">6</div>
+                        </div>
+                        <div class="word">
+                            <div class="btn_blog">더솔루션</div>
+                            <span class="desc">마스크시트</span>
+                            <span class="price">2,000</span>
+                        </div></a>
+                    </li>
+                    <li class="best_seller_slide">
+                        <a href="sub_product.html">
+                        <div class="sub_fade_wrap sub_fade"></div>
+                        <div class="bg" style="background-image: url(data/graphic/best7.jpg);">
+                            <div class="shinny"></div>
+                            <div class="bg_best">7</div>
+                        </div>
+                        <div class="word">
+                            <div class="btn_blog">닥터벨머</div>
+                            <span class="desc">앰플 마스크 비타 세린</span>
+                            <span class="price">3,500</span>
+                        </div></a>
+                    </li>
+                    <li class="best_seller_slide">
+                        <a href="sub_product.html">
+                        <div class="sub_fade_wrap sub_fade"></div>
+                        <div class="bg" style="background-image: url(data/graphic/best8.jpg);">
+                            <div class="shinny"></div>
+                            <div class="bg_best">8</div>
+                        </div>
+                        <div class="word">
+                            <div class="btn_blog">닥터벨머</div>
+                            <span class="desc">마일드 더마 마스크</span>
+                            <span class="price">2,500</span>
+                        </div></a>
+                    </li>
+                    <div id="best_seller_slide_btn_left_wrap">
+                        <div id="best_seller_slide_btn_left">&#10094;</div>
+                    </div>
+                    <div id="best_seller_slide_btn_right_wrap">
+                        <div id="best_seller_slide_btn_right">&#10095;</div>
+                    </div>
+        
+                </ul>
+            </div>
+        
+        
+        <div class="kakao flying_ani">
+            <h1>THE FACE SHOP X KAKAO FRIENDS</h1>
+            <div class="main_image">
+                <div class="mainimage_movingbox"></div>
+                <div class="mainimage_movingbox"></div>
+                <div class="mainimage_movingbox"></div>
+            </div>
+            
+            <div style="overflow: hidden; margin-top: 20px;">
+            <a href="sub_product.html"><div class="more" style="margin-right: 2%;">MORE &#10095;</div></a>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <ul style="list-style: none;">
+                    <li><a href="sub_product.html">
+                        <div class="kakao_li_border_bottom"></div>
+                        <div class="kakao_li_border_right"></div>
+                        <div class="kakao_li_border_top"></div>
+                        <div class="kakao_li_border_left"></div>
+                        
+                        <div class="bg" style="background-image: url(data/graphic/kakao1.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">리틀프렌즈</div>
+                                <span class="desc">닥터벨머 베이비앤키즈 마일드 모이스처라이저</span>
+                                <span class="price">22,000</span>
+                            </div>
+                        </div></a>
+                    </li>
+                    <li><a href="sub_product.html">
+                        <div class="kakao_li_border_bottom"></div>
+                        <div class="kakao_li_border_right"></div>
+                        <div class="kakao_li_border_top"></div>
+                        <div class="kakao_li_border_left"></div>
+                        
+                        <div class="bg" style="background-image: url(data/graphic/kakao2.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">리틀프렌즈</div>
+                                <span class="desc">홀리데이 약산성 클렌징폼</span>
+                                <span class="price">10,000</span>
+                            </div>
+                        </div></a>
+                    </li>
+                    <li><a href="sub_product.html">
+                        <div class="kakao_li_border_bottom"></div>
+                        <div class="kakao_li_border_right"></div>
+                        <div class="kakao_li_border_top"></div>
+                        <div class="kakao_li_border_left"></div>
+                        
+                        <div class="bg" style="background-image: url(data/graphic/kakao3.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">클럽라이언</div>
+                                <span class="desc">수딩젤리 마스크 집중수분</span>
+                                <span class="price">2,000</span>
+                            </div>
+                        </div></a>
+                    </li>
+                    <li><a href="sub_product.html">
+                        <div class="kakao_li_border_bottom"></div>
+                        <div class="kakao_li_border_right"></div>
+                        <div class="kakao_li_border_top"></div>
+                        <div class="kakao_li_border_left"></div>
+                        
+                        <div class="bg" style="background-image: url(data/graphic/kakao4.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">클럽라이언</div>
+                                <span class="desc">벨벳 틴트</span>
+                                <span class="price">12,000</span>
+                            </div>
+                        </div></a>
+                    </li>
+        
+                </ul>
+            </div>
+        </div>
+        
+        
+        <div class="section_newsletter flying_ani">
+            
+            <h1>NEWSLETTER</h1>
+            
+            <div style="overflow: hidden;">
+            <a href="review.html"><div class="more">MORE &#10095;</div></a>
+            </div>
+            
+            <div style="margin: 0 100px;">
+            <div class="wrap_top">
+                <ul>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter1.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=317">
+                                <div class="title">완벽한 바캉스 케어!</div>
+                                <span class="desc">겨드랑이는 보송하게,<br>무더위에 지친 피부는 <br>시원하게!</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter2.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=316">
+                                <div class="title">스타일링 풀커버 스티커</div>
+                                <span class="desc">손톱 크기에 맞춰 붙이면<br>젤 네일 같은 광택감의 <br>네일아트 완성 ♥</span>
+                                </a>
+                        </div>
+                    </li>
+                </ul>
+                </div>
+                <div class="wrap_bottom">
+                    <ul>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter3.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=315">
+                                <div class="title">안티에이징에 <br>수분을 더하다</div>
+                                <span class="desc">더테라피 퍼스트 세럼<br> &amp; 수분 블렌딩 크림</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter4.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=311">
+                                <div class="title">셀프네일</div>
+                                <span class="desc">곰손이라 고민이라면?</span>
+                                </a>
+                        </div>
+                    </li>
+        
+                </ul>
+            </div>
+            </div>
+        </div>
+        
+        <div class="review flying_ani" style="overflow: hidden;">
+            <h1>BEST REVIEW</h1>
+            
+            <div style="overflow: hidden;">
+            <a href="review.html"><div class="more" style="margin-right: 0;">MORE &#10095;</div></a>
+            </div>
+            
+            <iframe width="600" height="600" src="https://www.youtube.com/embed/VweJ182Ypko" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <a href="review.html">
+            <div class="img" style="background-image: url(data/graphic/review1.jpg)">
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: jada4002</div>
+                    <div class="review_word multiline_ellipsis">약간의 살색으로 얇게 펴발려요 기본잡티도 커버되구요 하얗지않아좋구 펴발림성도 지금까지쓴 다른어떤것보다 아주 뛰어납니다 금액또한 가성비도좋구요 모두들 써보세요!</div>
+                </div>
+            </div>
+            </a>
+            <a href="review.html">
+            <div class="img" style="background-image: url(data/graphic/review2.jpg)">                
+                <div class="review_inner">
+                    <div class="review_star">★★★★★</div>
+                    <div class="review_writer">작성자: nania167</div>
+                    <div class="review_word multiline_ellipsis">사무실의 빵빵한 에어컨의 건조한 바람으로 부터 나의 피부를 지켜주는 아이템. 겨울보다 여름에 더 필요해요.</div>
+                </div>
+            </div>
+            </a>
+            <a href="review.html">
+            <div class="img" style="background-image: url(data/graphic/review3.jpg)">                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: tfsa0a0</div>
+                    <div class="review_word multiline_ellipsis">1년 넘게 알로에 수딩젤을 사용하고 있는데 너무 좋아요. 1+1이라고해서 고민없이 바로 구매했어요. 주문하고 이틀 있다가 배송이 왔어요. 발림성도 좋고 향도 좋아요. 피부에 자극적이지 않아요.
+</div>
+                </div>
+            </div>
+            </a>
+            <a href="review.html">
+            <div class="img" style="background-image: url(data/graphic/review4.jpg)">                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss</div>
+                    <div class="review_word multiline_ellipsis">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+            </div>
+            </a>
+        </div>
+        
+        <div class="section_sns flying_ani">
+            <h1>#SNS</h1>
+            
+            <div style="overflow: hidden;">
+            <a href="https://www.instagram.com/thefaceshop.official/"><div class="more" style="margin-right: 0;">MORE &#10095;</div></a>
+            </div>
+            
+            <div style="position: relative;">
+                <div class="section_sns_preview"></div>
+                <div class="section_sns_preview"></div>
+                <ul style="">
+                    <li>
+                                <a href="https://www.instagram.com/p/B0XFm1hgQo0/">
+                        <div class="bg" style="background-image: url(data/graphic/sns1.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">에너지씨드<br>수분항산화 에센스</div>
+                                <span class="desc">더 잘 쓰는 n가지 방법 !</span>
+                                <span class="price instagram">#instagram</span>
+                                
+                            </div>
+                        </div></a>
+                    </li>
+                    <li>
+                                <a href="https://m.post.naver.com/viewer/postView.nhn?volumeNo=21891902&memberNo=15582129">
+                        <div class="bg" style="background-image: url(data/graphic/sns2.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">세상에서 가장 설레는</div>
+                                <span class="desc">더페이스샵 7월 세일 ♥</span>
+                                <span class="price post">#post</span>
+                                
+                            </div>
+                        </div></a>
+                    </li>
+                    <li>
+                                <a href="https://blog.naver.com/tfs_nail?proxyReferer=http%3A%2F%2Fwww.thefaceshop.com%2Fmall%2Findex.jsp">
+                        <div class="bg" style="background-image: url(data/graphic/sns3.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">트렌디 네일즈<br>GL1053</div>
+                                <span class="desc">푸른 동굴 탐험 ~</span>
+                                <span class="price blog">#blog</span>
+                                
+                            </div>
+                        </div></a>
+                    </li>
+                    <li>
+                                <a href="https://www.instagram.com/p/B07IFEKgVxO/">
+                        <div class="bg" style="background-image: url(data/graphic/sns5.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">같은말복<br>다른생각</div>
+                                <span class="desc">코덕형말복<br>안성맞춤템</span>
+                                <span class="price instagram">#instagram</span>
+                                
+                            </div>
+                        </div></a>
+                    </li>
+                    <li>
+                                <a href="https://www.instagram.com/p/B02wpolAJ7B/">
+                        <div class="bg" style="background-image: url(data/graphic/sns6.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">현재곡<br>828244</div>
+                                <span class="desc">더페이스샵 이거사송</span>
+                                <span class="price instagram">#instagram</span>
+                                
+                            </div>
+                        </div></a>
+                    </li>
+                    <li>
+                                <a href="https://www.instagram.com/p/B02Bg8aAEp5/">
+                        <div class="bg" style="background-image: url(data/graphic/sns7.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">8월 SALE<br>UP TO 50%</div>
+                                <span class="desc">8.7~8.10</span>
+                                <span class="price instagram">#instagram</span>
+                                
+                            </div>
+                        </div></a>
+                    </li>
+                    <li>
+                                <a href="https://www.instagram.com/p/B0SlpizgE-O/">
+                        <div class="bg" style="background-image: url(data/graphic/sns8.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">예화담<br>환생고 화윤크림</div>
+                                <span class="desc">피부 본연의 빛을 꺠우다</span>
+                                <span class="price instagram">#instagram</span>
+                                
+                            </div>
+                        </div></a>
+                    </li>
+                    <li>
+                                <a href="https://www.youtube.com/user/ethefaceshop">
+                        <div class="bg" style="background-image: url(data/graphic/sns4.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">닥터벨머<br>오렌지세럼</div>
+                                <span class="desc">x 혜윤 x 보라 x 유나의 상큼한 만남★</span>
+                                <span class="price youtube">#youtube</span>
+                                
+                            </div>
+                        </div></a>
+                    </li>
+        
+                </ul>
+                <div class="section_sns_preview"></div>
+                <div class="section_sns_preview"></div>
+            </div>
+        </div>
+        
+        <div class="sns">
+            <span style="color: #000; font-weight: 900; display: block; text-align: center; font-size: 1.2em;">THE FACE SHOP</span>
+            <span style="color: #6d9811; font-weight: 900; display: block; text-align: center;">새로운 소식을 빠르게 만나보세요!</span>
+            <ul style="list-style: none; width: 175px; margin: 10px auto 5px;">
+                <a href="https://www.instagram.com/thefaceshop.official/" target="_blank"><li style="background-image: url(data/graphic/ico-blog1.png)"><div class="copy" style="background-image: url(data/graphic/ico-blog2.png)"></div></li></a>
+                <a href="https://www.instagram.com/thefaceshop.official/" target="_blank"><li style="background-image: url(data/graphic/ico-facebook1.png)"><div class="copy" style="background-image: url(data/graphic/ico-facebook2.png)"></div></li></a>
+                <a href="https://www.instagram.com/thefaceshop.official/" target="_blank"><li style="background-image: url(data/graphic/ico-instagram1.png)"><div class="copy" style="background-image: url(data/graphic/ico-instagram2.png)"></div></li></a>
+                <a href="https://www.instagram.com/thefaceshop.official/" target="_blank"><li style="background-image: url(data/graphic/ico-youtube1.png)"><div class="copy" style="background-image: url(data/graphic/ico-youtube2.png)"></div></li></a>
+                <a href="https://www.instagram.com/thefaceshop.official/" target="_blank"><li style="background-image: url(data/graphic/ico-kakaotalk1.png)"><div class="copy" style="background-image: url(data/graphic/ico-kakakotalk2.png)"></div></li></a>
+            </ul>
+        </div>
+    </div>
+    <div id="footer"></div>
+</body>
+    
+    <script type="text/javascript" src="header.js"></script>
+    <script>
+        $(document).ready( function() {
+            $("#navigation").load("header.html");
+            $("#footer").load("footer.html");
+        });
+    
+var slideIndex = 1;
+    var timer = null;
+        
+window.onload = function(){
+    showSlides(slideIndex);
+    scroll100per();
+    best_seller_slide(0);
+    flying_ani_initial();
+    section_sns_slide();
+}
+
+function plusSlides(n) {
+    clearInterval(timer);
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    clearInterval(timer);
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1} 
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none"; 
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block"; 
+  dots[slideIndex-1].className += " active";
+    
+    timer = setTimeout(auto_slide, 3000);
+}
+    function auto_slide(){
+        slideIndex++;
+        showSlides(slideIndex);
+    }
+
+    var best_seller_slide_count=0;
+    var show_best_seller_slide_number=4;
+    var slides = document.getElementsByClassName("best_seller_slide");
+    function best_seller_slide(n) {
+        best_seller_slide_count += n;
+        if (best_seller_slide_count == 0) {
+            document.getElementById("best_seller_slide_btn_left_wrap").style.pointerEvents="none"; document.getElementById("best_seller_slide_btn_left").style.display="none";
+        } else if(best_seller_slide_count == slides.length-show_best_seller_slide_number) {
+            document.getElementById("best_seller_slide_btn_right_wrap").style.pointerEvents="none"; document.getElementById("best_seller_slide_btn_right").style.display="none";
+        } else {
+            document.getElementById("best_seller_slide_btn_left_wrap").style.pointerEvents="all"; document.getElementById("best_seller_slide_btn_right_wrap").style.pointerEvents="all"; document.getElementById("best_seller_slide_btn_left").style.display="inherit";
+            document.getElementById("best_seller_slide_btn_right").style.display="inherit";
+        }
+        
+        for(i=0;i<slides.length;i++) {
+            slides[i].style.display="none";
+                slides[i].classList.remove('to_right');
+                slides[i].classList.remove('to_left');
+        }
+        for(i=0;i<show_best_seller_slide_number;i++) {
+            slides[best_seller_slide_count+i].style.display="inline-block";
+            if(n==-1) slides[best_seller_slide_count+i].classList.add('to_right');
+            else slides[best_seller_slide_count+i].classList.add('to_left');
+        }
+    }
+        document.getElementById("best_seller_slide_btn_left_wrap").addEventListener('click',function() {best_seller_slide(-1);});
+        document.getElementById("best_seller_slide_btn_right_wrap").addEventListener('click',function() {best_seller_slide(1);});
+        
+        function scroll100per(){
+            var elm = "#main";
+            $(elm).each(function (index) {
+                // 개별적으로 Wheel 이벤트 적용
+                $(this).on("mousewheel DOMMouseScroll", function (e) {
+                    e.preventDefault();
+                    var delta = 0;
+                    if (!event) event = window.event;
+                    if (event.wheelDelta) {
+                        delta = event.wheelDelta / 120;
+                        if (window.opera) delta = -delta;
+                    } 
+                    else if (event.detail)
+                        delta = -event.detail / 3;
+                    var moveTop = $(window).scrollTop();
+                    var elmSelecter = $(elm).eq(index);
+                    // 마우스휠을 위에서 아래로
+                    if (delta < 0) {
+                        if ($(elmSelecter).next() != undefined) {
+                            try{
+                                moveTop = $(elmSelecter).next().offset().top;
+                                //950
+                            }catch(e){}
+                        }
+                    // 마우스휠을 아래에서 위로
+                    } else {
+                        if ($(elmSelecter).prev() != undefined) {
+                            try{
+                                moveTop = 0;//$(elmSelecter).prev().offset().top;
+                            }catch(e){}
+                        }
+                    }
+                     
+                    // 화면 이동 0.8초(800)
+                    $("html,body").stop().animate({
+                        scrollTop: moveTop + 'px'
+                    }, {
+                        duration: 800, complete: function () {
+                        }
+                    });
+                });
+            });
+        }
+        
+        $('.flying_ani').wrap('<div class="flying_ani_wrap"></div>');
+        function flying_ani_initial() {
+            $('.flying_ani_wrap:nth-child(2n+1)').css({'transform':'translate(-150%)'});
+            $('.flying_ani_wrap:nth-child(2n)').css({'transform':'translate(150%)'});
+            $('.flying_ani_wrap').css({'transition':'1s'});
+        }
+        /*
+        window.onscroll = function() {
+            flying_ani_initial();
+            var flying_ani_wrap = document.getElementsByClassName('flying_ani_wrap');
+            var adjust = 800;
+            
+            for(i=0; i<flying_ani_wrap.length; i++) {
+                if(flying_ani_wrap[i].offsetTop-adjust <= window.pageYOffset) {
+                    $(flying_ani_wrap[i]).css({
+                        'transform' : 'translateX(0%)'
+                    })}}
+            if(window.pageYOffset == 0) {flying_ani_initial();}
+        }*/
+        
+        window.addEventListener('scroll', function() {
+            var flying_ani_wrap = document.getElementsByClassName('flying_ani_wrap');
+            var adjust = 800;
+            
+            for(i=0; i<flying_ani_wrap.length; i++) {
+                if(flying_ani_wrap[i].offsetTop-adjust <= window.pageYOffset) {
+                    $(flying_ani_wrap[i]).css({
+                        'transform' : 'translateX(0%)'
+                    })}}
+            if(window.pageYOffset == 0) {flying_ani_initial();}
+        });
+        
+    
+        var now = 0;
+        var section_sns_li = document.getElementsByClassName('section_sns')[0].getElementsByTagName('li');
+        var section_sns_preview = document.getElementsByClassName('section_sns_preview');
+            section_sns_preview[1].addEventListener('click',function(){now--; section_sns_slide(); section_sns_li[now].classList.add('to_right');});
+            section_sns_preview[2].addEventListener('click',function(){now++; section_sns_slide(); section_sns_li[now].classList.add('to_left');});
+        function section_sns_slide() {
+            if(now < 0) {now = section_sns_li.length-1;}
+            if(now >= section_sns_li.length) {now = 0;}
+            
+            for(var i=0; i<section_sns_li.length; i++) {
+                section_sns_li[i].style.display = 'none';
+                section_sns_li[i].classList.remove('to_right');
+                section_sns_li[i].classList.remove('to_left');
+            }
+            section_sns_li[now].style.display = 'inline-block';
+            var now_before = now-1;
+            var now_before_before = now-2;
+            var now_after = now+1;
+            var now_after_after = now+2;
+            if(now_before < 0) {now_before = section_sns_li.length-1; now_before_before = section_sns_li.length-2;}
+            else if(now_before_before < 0) {now_before_before = section_sns_li.length-1;}
+            if(now_after >= section_sns_li.length) {now_after = 0; now_after_after = 1;}
+            else if(now_after_after >= section_sns_li.length) {now_after_after = 0;}
+            section_sns_preview[0].style.backgroundImage = $(section_sns_li[now_before_before].getElementsByClassName('bg')[0]).css('background-image');
+            section_sns_preview[1].style.backgroundImage = $(section_sns_li[now_before].getElementsByClassName('bg')[0]).css('background-image');
+            section_sns_preview[2].style.backgroundImage = $(section_sns_li[now_after].getElementsByClassName('bg')[0]).css('background-image');
+            section_sns_preview[3].style.backgroundImage = $(section_sns_li[now_after_after].getElementsByClassName('bg')[0]).css('background-image');
+        }
+    </script>
+</html>

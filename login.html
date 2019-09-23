@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" sizes="16x16 32x32" href="data/graphic/favicon.ico">
+    <title>THE FACE SHOP REMAKE LOGIN</title>
+    <!-- 원본: http://www.ohui.co.kr/ -->
+    
+    <link href="common.css" type="text/css" rel="stylesheet">
+    
+    <script type="text/javascript" src="header.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+        });
+    </script>
+    
+    <style>
+        h1 {margin-bottom:17px; font-size:34px; color:#000; font-weight:700; text-align:center;}
+        input {padding:0 20px; height:40px; line-height:40px; font-size:14px; border:1px solid #dfdfdf; color:#999;}
+        
+#wrap_1 {padding:50px 40px 20px;}
+.wrap_2 {position:relative; width:741px; padding-top:40px; margin:40px auto 65px; border-top:1px solid #a9adaf; *zoom:1}
+.wrap_3 {position:relative; width:320px; padding-right:50px; border-right:1px solid #f2f2f2;}
+.wrap_3 input[type=text], .wrap_3 input[type=password] {width:278px; margin-bottom:10px;}
+
+.wrap_2:after{content:''; display:block; clear:both;}
+.wrap_2:before{content:''; position:absolute; top:1px;; left:0px; border-top:1px solid #a9adaf; width:100%; *zoom:1;}
+.wrap_3, .wrap_4 {float:left;}
+.wrap_3:after {content:'or'; position:absolute; top:50%; right:-12px; margin-top:-12px; padding:2px 5px 5px; font-size:14px; color:#d9d9d9; background:#fff;}
+.wrap_3>span {position:absolute; bottom:-40px; left:0px;}
+.wrap_3>span input {vertical-align:middle; margin-right:5px;}
+.wrap_3>span input[type=checkbox] {border:0; width:auto; height:auto;padding:0; line-height:normal;}
+.wrap_3>span label {color:#333; vertical-align:middle; font-size:14px;}
+.wrap_4 {width:320px; padding-left:50px}
+.wrap_4 li {margin-bottom:10px;}
+        
+.wrap_footer {padding-top:18px; border-top:1px solid #f1f1f1; text-align:center;}
+.wrap_footer li {display:inline-block; zoom:1; *display:inline;}
+.wrap_footer li.on a {font-weight:700;}
+.wrap_footer li a {display:inline-block; position:relative; padding:0 16px 0 13px; font-size:12px; color:#333}
+.wrap_footer li a:after {content:''; position:absolute; right: 0px; top:50%; width:1px; height:8px; margin-top:-4px; background:#9f9f9f;}
+.wrap_footer li.last a:after {display:none;}
+
+
+.btnTypeNA {display:block; height:42px; line-height:42px; text-align:center; color:#fff; font-size:14px; background:#6d9811;}
+.btnTypeNB {position:relative; display:block; padding-left:51px; text-align:center; height:42px; line-height:42px; font-size:14px; z-index:1}
+.btnTypeNB:after {content:''; position:absolute; top:0px; left:0px; width:51px; height:42px; z-index:2}
+.btnTypeNB.naver {background:#00c63b; color:#fff;}
+.btnTypeNB.naver:after {background:url(data/graphic/ico_naver.gif) no-repeat 0 0;}
+.btnTypeNB.facebook {background:#0054a6; color:#fff;}
+.btnTypeNB.facebook:after {background:url(data/graphic/ico_facebook.gif) no-repeat 0 0;}
+.btnTypeNB.kakao {background:#f3e02a; color:#3c1c1d; }
+.btnTypeNB.kakao:after {background:url(data/graphic/ico_kakao.gif) no-repeat 0 0;}
+
+.wrap_3 .loginInfo {position:relative;}
+.wrap_3 .loginInfo label {position:absolute; left:23px; top:13px; font-size:14px; color:#999;}
+        
+    </style>
+    
+</head>
+<body>
+    <form>
+        <div id="wrap_1">
+            <h1>로그인</h1>
+            <div class="wrap_2">
+                <div class="wrap_3">
+                    
+                    <div class="loginInfo"><input type="text" id ="userid" name="userid"  maxlength="100" placeholder="아이디를 입력해주세요."></div>
+                    
+                    <div class="loginInfo"><input type="password" name="userpw" id="userpw" maxlength="20" placeholder="비밀번호를 입력해주세요."></div>
+                    
+                    <a href="#" onclick="chkValue();" class="btnTypeNA">로그인</a>
+                    
+                    <span><input type="checkbox" id="idSave" name="idsave" value="Y" ><label for="idSave">아이디 저장</label></span>
+                
+                </div>
+                
+                <ul class="wrap_4">
+                    <li><a href="javascript:" class="btnTypeNB naver">네이버로 로그인</a></li>
+                    <li><a href="javascript:" class="btnTypeNB facebook">페이스북으로 로그인</a></li>
+                    <li><a href="javascript:" class="btnTypeNB kakao">카카오로 로그인</a></li>
+                </ul>
+                
+            </div>
+            <ul class="wrap_footer">
+                <li class="on"><a href="javascript:;">회원가입</a></li>
+                <li><a href="javascript:;">아이디 찾기</a></li>
+                <li class="last"><a href="javascript:;">비밀번호 찾기</a></li>
+            </ul>
+        </div>
+    </form>
+</body>
+    
+    <script>
+        function chkValue() {
+            if($('#userid').val()=="") return alert('아이디를 입력해주세요.');
+            else if($('#userpw').val()=="") return alert('비밀번호를 입력해주세요.');
+            else return close_login();
+        }
+        function close_login() {
+            var user = $('#userid').val();
+            alert(user+' 님 환영합니다.')
+            window.close();
+        }
+
+    </script>
+</html>

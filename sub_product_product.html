@@ -1,0 +1,573 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" sizes="16x16 32x32" href="data/graphic/favicon.ico">
+<title>THE FACE SHOP REMAKE</title>
+    <link href="header.css" type="text/css" rel="stylesheet">
+    <link href="footer.css" type="text/css" rel="stylesheet">
+    <link href="common.css" type="text/css" rel="stylesheet">
+    
+    <style>
+        
+        .product {width: 600px; height: 600px; float: left;}
+        .product_small {text-align: center;}
+        .bg {width: 400px; height: 400px; margin: 50px 100px; position: relative; transition: 0.2s;}
+        .bg_small {width: 100px; height: 100px; display: inline-block; cursor: pointer;}
+        
+        .price_wrap {width: 100%; margin: 5px 0; position: relative; display: block; height: 40px; line-height: 40px;}
+        .price_wrap .price_word {position: absolute; left: 0; color: #3b322b;}
+        .product .product_mass {width: 100%; padding: 20px; box-sizing: border-box; border-bottom: 1px solid #bea36b;}
+        .btn_blog {font-size: 1.2em; color: #bea36b; display: block; font-weight: 600;}
+        .desc {
+            font-size: 1.5em;
+            color: #000;
+            display: block;
+            padding: 15px 0 25px;
+            line-height: 28px;
+            max-height: 20px;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+        
+        .price:before, .product .sale_price:before {
+            content: ""; 
+            display: inline-block; 
+            background: url(data/graphic/krw.png) no-repeat center center; 
+            width: 20px; 
+            height: 20px; 
+            background-size: contain; 
+            position: relative; 
+            top: 4px; 
+            margin-right: 5px;
+        }
+        .price {position: absolute; right: 0; color: goldenrod; font-weight: 700;}
+        .product .sale_price {
+            position: absolute;
+            right: 0;
+            color: #aaa; 
+            text-decoration: line-through;
+            font-size: 0.9em;
+        }
+        .search_store {
+            position: relative;
+            width: 100%; 
+            padding: 10px;
+            margin: 20px 0;
+            height: 60px; 
+            line-height: 40px;
+            color: white;
+            background-color: #6d9811;
+            font-size: 1.1em;
+            text-align: center;
+            box-sizing: border-box;
+            font-weight: bold;
+            border-radius: 20px 0 20px 0;
+        }
+        .search_store_question {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            width: 25px;
+            height: 25px;
+            background-image: url(data/graphic/question.png);
+            background-size: contain;
+            cursor: pointer;
+        }
+        
+        .status {
+            position: absolute;
+            left: 10px;
+            width: 60px; 
+            height: 25px;
+            color: #bea36b; 
+            border: 2px solid #bea36b; 
+            box-sizing: border-box; 
+            font-size: 0.7em;
+            text-align: center;
+            padding: 3px;
+            top: 13%;
+        }
+        .sale {
+            position: absolute;
+            color: white; 
+            background-color: red;
+            left: 10px;
+            top: 5%;
+            padding: 3px 6px;
+            font-size: 1em;
+            font-weight: bold;
+            animation-name: sale;
+            animation-iteration-count: infinite;
+            animation-duration: 2s;
+        }
+        @keyframes sale {
+            0% {transform: rotate(0deg);}
+            30% {transform: rotate(10deg);}
+            45% {transform: rotate(-5deg);}
+            50% {transform: rotate(3deg);}
+            60% {transform: rotate(-1deg);}
+            70% {transform: rotate(0deg);}
+            100% {}
+        }
+        
+        .close {
+            cursor: pointer; 
+            background: url(data/graphic/close.png) no-repeat center center;
+            background-size: contain;
+            width: 30px; 
+            height: 30px; 
+            position: absolute; 
+            right: 95px; 
+            bottom: 30px;
+        }
+        .black_overlay{
+        display: none;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index:100;
+        opacity:.7;
+        }
+        .white_content {
+        display: none;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        width: 60%;
+        height: 60%;
+        text-align: center;
+        z-index:101;
+        }
+        
+        .product_detail_top {
+            width: 100%; 
+            height: 50px; 
+            border-top: 1px solid #ddd; 
+            border-bottom: 1px solid #ddd;
+            clear: both;
+            margin: 100px 0 50px 0;
+        }
+        .product_detail_top a:hover {color: #6d9811;}
+        .product_detail_top li {
+            height: 50px; 
+            line-height: 50px; 
+            width: 33.3%; 
+            float: left; 
+            text-align: center; 
+            box-sizing: border-box;
+        }
+        .product_detail_1 {text-align: center;}
+        .product_detail_2 {border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; overflow: hidden; min-height: 700px;}
+        .product_detail_3 {border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;}
+        .product_detail_3 li {}
+        .product_detail_3 li:nth-child(2n+1) {
+            float: left;
+            height: 70px; 
+            line-height: 70px;
+            font-size: 0.8em; 
+            color: #3b322b;
+            margin-right: 15px;
+            font-weight: bold; 
+            background-color: #eee; 
+            width: 200px; 
+            text-align: center; 
+            clear: both;
+        }
+        .product_detail_3 li:nth-child(2n) {
+            font-size: 0.8em; 
+            height: 70px; 
+            color: #3b322b;
+            line-height: 1.4;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .product_detail_2 .img, .review_inner {margin: 10px; float: left; height: 150px;}
+        .review_wrap {}
+        .img {width: 150px; background-size: cover; background-position: center center; background-repeat: no-repeat;}
+        .product_detail_2 .review_star {color: #6d9811; font-size: 1.1em;}
+        .product_detail_2 .review_writer {font-size: 0.8em; font-weight: 700; margin: 10px 0; color: #555;}
+        .product_detail_2 .review_word {font-size: 0.8em; width: 1000px; line-height: 1.6; color: #777;}
+        
+        .page {color: #777; margin: 20px 0 100px; text-align: center; font-size: 0.9em;}
+        .page a {margin: 0 10px;}
+        .page a:hover {color: #6d9811; font-weight: bold;}
+        .page span:hover {color: #6d9811; font-weight: bold; cursor: pointer;}
+        
+        .related_product {margin: 30px 0 100px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;}
+        .related_product .btn_blog, .related_product .desc, .related_price .price {font-size: 0.8em;}
+        .related_product .desc {padding: 5px 0;}
+        .related_product .price {left: 0;}
+        .related_product img {width: 100px; height: 100px; vertical-align: middle; text-align: center;}
+        .related_product ul {text-align: center;}
+        .related_product li {display: inline-block; width: 100px; height: 200px; margin: 0 30px;}
+        .related_product li > div {position: relative;}
+        
+        
+    </style>
+
+</head>
+    
+<body>
+
+    <div id="navigation"></div>
+    
+    
+    
+    
+
+  <div class="wrap">
+      
+      <div style="overflow: hidden">
+      <div class="product">
+          <div class="bg" style="background: url(data/graphic/sub_product1.jpg); background-size: contain; background-repeat: no-repeat; background-position: center;">
+              <div class="sale">50% 할인</div>
+          </div>
+          <div class="product_small">
+              <div class="bg_small" style="background: url(data/graphic/sub_product1.jpg) no-repeat center center; background-size: cover;" onclick="change_thumbnail('1');"></div>
+              <div class="bg_small" style="background: url(data/graphic/sub_product1_1.jpg) no-repeat center center; background-size: cover;" onclick="change_thumbnail('1_1');"></div>
+          </div>
+      </div>
+      <div class="product">
+              <div class="product_mass">
+                  <div class="btn_blog">아르쌩뜨</div>
+                  <span class="desc">에코-테라피 토닉 위드 에센셜</span>
+                  </div>
+          <div class="product_mass">
+                  <div class="price_wrap">
+                      <div class="price_word">판매가</div>
+                      <div class="sale_price">34,000</div>
+                  </div>
+                  <div class="price_wrap">
+                      <div class="price_word">혜택가</div>
+                      <div class="price">17,000</div>
+                  </div>
+          </div>
+                  <a href="store.html"><div class="search_store">매장찾기
+                      <div class="search_store_question" onclick = "document.getElementById('light').style.display='block'; document.getElementById('fade').style.display='block'"></div></div></a>
+          
+          <div id="light" class="white_content"><img src="data/graphic/sale_end_banner.jpg">
+              <div class="close" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"></div></div>
+          <div id="fade" class="black_overlay"></div>
+          
+      </div>
+      </div>
+      
+      <div class="product_detail_top">
+          <ul>
+              <li style="border-bottom: 3px solid #6d9811; color: #6d9811;"><a href="#product_detail_1">상품정보</a></li>
+              <li><a href="#product_detail_2">상품리뷰</a></li>
+              <li><a href="#product_detail_3">구매정보</a></li>
+          </ul>
+      </div>
+      <div class="product_detail_1" id="product_detail_1">
+          <img src="data/graphic/product_detail.jpg">
+      </div>
+      
+      <div class="product_detail_top">
+          <ul>
+              <li><a href="#product_detail_1">상품정보</a></li>
+              <li style="border-bottom: 3px solid #6d9811; color: #6d9811;"><a href="#product_detail_2">상품리뷰</a></li>
+              <li><a href="#product_detail_3">구매정보</a></li>
+          </ul>
+      </div>
+      <div class="product_detail_2" id="product_detail_2">
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/review1.jpg)"></div>
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: jada4002 / 작성일: 2019.07.27</div>
+                    <div class="review_word">약간의 살색으로 얇게 펴발려요 기본잡티도 커버되구요 하얗지않아좋구 펴발림성도 지금까지쓴 다른어떤것보다 아주 뛰어납니다 금액또한 가성비도좋구요 모두들 써보세요!</div>
+                </div>
+              </div>
+          
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/review2.jpg)"></div>      
+                <div class="review_inner">
+                    <div class="review_star">★★★★★</div>
+                    <div class="review_writer">작성자: nania167 / 작성일: 2019.07.27</div>
+                    <div class="review_word">사무실의 빵빵한 에어컨의 건조한 바람으로 부터 나의 피부를 지켜주는 아이템. 겨울보다 여름에 더 필요해요.</div>
+                </div>
+              </div>
+            
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/review3.jpg)"></div>               
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: tfsa0a0 / 작성일: 2019.07.27</div>
+                    <div class="review_word">1년 넘게 알로에 수딩젤을 사용하고 있는데 너무 좋아요. 1+1이라고해서 고민없이 바로 구매했어요. 주문하고 이틀 있다가 배송이 왔어요. 발림성도 좋고 향도 좋아요. 피부에 자극적이지 않아요.
+                    </div>
+                </div>
+          </div>
+            
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/review4.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/tree2.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/tree3.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/tree1.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/best1.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/best2.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/best3.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/best4.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/best5.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/best6.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/best7.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/best8.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/kakao1.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          <div class="review_wrap">
+            <div class="img" style="background-image: url(data/graphic/kakao2.jpg)"></div>                
+                <div class="review_inner">
+                    <div class="review_star">★★★★☆</div>
+                    <div class="review_writer">작성자: funnycss / 작성일: 2019.07.27</div>
+                    <div class="review_word">건조하다는 평이 많아서 건성인 저는 살 생각이 없었는데 친구가 이걸 쓰길래 한번 써봤더니 피부 표현도 너무 예쁘고 좋아서 바로 구매했어요! 지금 이 파운데이션 쓰고 외출한게 한 다섯번인데 모두 다 좋았구요 각질 부각도 별로 없어서 만족스러워요! 커버만 좀 더 잘 되면 진짜 좋을 것 같아요!</div>
+                </div>
+          </div>
+          
+      </div>
+          
+          <div class="page">
+              <span>&#10094;</span>
+              <a href="javascript:show_newsletter_list(0);">1</a>
+              <a href="javascript:show_newsletter_list(1);">2</a>
+              <a href="javascript:show_newsletter_list(2);">3</a>
+              <a href="javascript:show_newsletter_list(3);">4</a>
+              <a href="javascript:show_newsletter_list(4);">5</a>
+              <span>&#10095;</span>
+          </div>
+      
+      <div class="product_detail_top">
+          <ul>
+              <li><a href="#product_detail_1">상품정보</a></li>
+              <li><a href="#product_detail_2">상품리뷰</a></li>
+              <li style="border-bottom: 3px solid #6d9811; color: #6d9811;"><a href="#product_detail_3">구매정보</a></li>
+          </ul>
+      </div>
+      <div class="product_detail_3" id="product_detail_3">
+          <ul>
+              <li>용량 및 중량</li>
+              <li>펌프 타입 215ml</li>
+              <li>제품 주요사항</li>
+              <li>모든 피부</li>
+              <li>제조연월/사용기간</li>
+              <li>개봉후 12개월 이내</li>
+              <li>사용방법</li>
+              <li>세안 후 용기를 상하로 가볍게 흔들어 토닉과 에센셜 오일이 섞이게 한 뒤, 적당량을 펌핑하여 고루 바르고 부드럽게 흡수 시켜줍니다. (용기를 과도하게 흔들지 않도록 주의하여 주세요.)</li>
+              <li>제조사/제조국</li>
+              <li>(주)내츄럴스토리/한국</li>
+              <li>주요성분</li>
+              <li>대나무추출물 (92.1%)∙네오펜틸글라이콜디에칠헥사노에이트∙베타인∙글리세린∙기름야자오일∙녹두추출물∙화피추출물∙양제근추출물∙글리세레스-26∙정제수∙부틸렌글라이콜∙디프로필렌글라이콜∙카보머∙에칠헥실메톡시신나메이트∙폴리쿼터늄-51∙소듐하이알루로네이트∙소듐미리스토일글루타메이트∙디소듐이디티에이∙포타슘하이드록사이드∙페녹시에탄올∙에칠헥실글리세린∙향료</li>
+              <li>기능성 여부</li>
+              <li>해당없음</li>
+              <li>사용 시의 주의사항</li>
+              <li>1. 화장품 사용 시 또는 사용 후 직사광선에 의하여 사용부위가 붉은 반점, 부어오름 또는 가려움증 등의 이상 증상이나 부작용이 있는 경우 전문의 등과 상담할 것 2. 상처가 있는 부위 등에는 사용을 자제할 것 3. 보관 및 취급 시의 주의사항 가) 어린이의 손이 닿지 않는 곳에 보관할 것 나) 직사광선을 피해서 보관할 것</li>
+              <li>품질보증기준</li>
+              <li>본 제품에 이상이 있을 경우 공정거래위원회 고시 소비자 분쟁 해결 기준에 의해 보상해 드립니다.</li>
+              <li>소비자상담 관련 전화번호</li>
+              <li>더페이스샵 / 080-855-1600</li>
+          </ul>
+      </div>
+      
+      <div class="related_product">
+          <div style="font-weight: bold; margin: 10px 0;">함께 쓰면 좋은 상품</div>
+          <ul><a href="javascript:;">
+              <li>
+                  <img src="data/graphic/related_product1.jpg">
+                  <div>
+                      <div class="btn_blog">데일리 뷰티툴즈</div>
+                      <div class="desc">면봉 3묶음</div>
+                      <div class="price">1,000</div>
+                  </div>
+              </li></a><a href="javascript:;">
+              <li>
+                  <img src="data/graphic/related_product2.jpg">
+                  <div>
+                      <div class="btn_blog">데일리 뷰티툴즈</div>
+                      <div class="desc">마일드 100% 코튼 화장솜</div>
+                      <div class="price">1,000</div>
+                  </div>
+              </li></a><a href="javascript:;">
+              <li>
+                  <img src="data/graphic/related_product3.jpg">
+                  <div>
+                      <div class="btn_blog">데일리 뷰티툴즈</div>
+                      <div class="desc">필름 기름종이</div>
+                      <div class="price">3,000</div>
+                  </div>
+              </li></a>
+          </ul>
+      </div>
+      
+    </div>
+    
+    
+    <div id="footer"></div>
+</body>
+    
+    <script type="text/javascript" src="header.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $("#navigation").load("header.html");
+            $("#footer").load("footer.html");
+            show_newsletter_list(0);
+        });
+    </script>
+    <script>
+        function change_thumbnail(number) {
+            document.getElementsByClassName("bg")[0].style.backgroundImage="url(data/graphic/sub_product"+number+".jpg)"
+        }
+        
+                var page = 0;
+                var page_a = document.getElementsByClassName('page')[0].getElementsByTagName('a');
+                var section_newsletter_li = document.getElementsByClassName('review_wrap');
+                var page_span = document.getElementsByClassName('page')[0].getElementsByTagName('span');
+        
+        function show_newsletter_list(count) {
+                page = count;
+                if(page<0) page=0;
+                else if(page>=page_a.length) page=page_a.length-1;
+            
+                for(i=0; i<section_newsletter_li.length; i++) {
+                    section_newsletter_li[i].style.display = 'none';
+                }
+                for(i=0; i<4; i++) {
+                    if(section_newsletter_li[4*page+i]!=undefined) section_newsletter_li[4*page+i].style.display = 'initial';
+                }
+                $('.page a').css({
+                        'color': '',
+                        'font-weight': '',
+                        'pointer-events': 'all'});
+            page_span[0].style.visibility = 'visible';
+            page_span[1].style.visibility = 'visible';
+                switch(page) {
+                    case 0: $('.page a:nth-child(2)').css({
+                        'color': '#6d9811',
+                        'font-weight': 'bold',
+                        'pointer-events': 'none'})
+                        page_span[0].style.visibility = 'hidden';
+                        break;
+                    case 1: $('.page a:nth-child(3)').css({
+                        'color': '#6d9811',
+                        'font-weight': 'bold',
+                        'pointer-events': 'none'})
+                        break;
+                    case 2: $('.page a:nth-child(4)').css({
+                        'color': '#6d9811',
+                        'font-weight': 'bold',
+                        'pointer-events': 'none'})
+                        break;
+                    case 3: $('.page a:nth-child(5)').css({
+                        'color': '#6d9811',
+                        'font-weight': 'bold',
+                        'pointer-events': 'none'})
+                        break;
+                    case 4: $('.page a:nth-child(6)').css({
+                        'color': '#6d9811',
+                        'font-weight': 'bold',
+                        'pointer-events': 'none'})
+                        page_span[1].style.visibility = 'hidden';
+                        break;
+                }
+        }
+                page_span[0].addEventListener('click', function() {
+                    show_newsletter_list(--page);
+                });
+                page_span[1].addEventListener('click', function() {
+                    show_newsletter_list(++page);
+                });
+        
+    </script>
+</html>

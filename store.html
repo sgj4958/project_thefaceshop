@@ -1,0 +1,661 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" sizes="16x16 32x32" href="data/graphic/favicon.ico">
+<title>THE FACE SHOP REMAKE</title>
+    <link href="header.css" type="text/css" rel="stylesheet">
+    <link href="footer.css" type="text/css" rel="stylesheet">
+    <link href="common.css" type="text/css" rel="stylesheet">
+    
+    <script type="text/javascript" src="header.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $("#navigation").load("header.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    
+    <style>
+        
+        .category3_top {margin-top: 100px; position: relative;}
+        .category3_top div {position: absolute; right: 0; bottom: 0; font-size: 0.8em; color: #aaa;}
+        .category3_top h1 {position: absolute; left: 0; bottom: 0;}
+        
+        .search_result_top {
+            position: relative;
+            margin: 100px 0 50px;
+            border-bottom: 1px solid #ddd;
+            height: 34px;
+        }
+        .search_result_top span {color: #6d9811;}
+        
+        area:focus {outline: 0;}
+        #sub_city_list {
+            position: absolute;
+            display: none;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ddd;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+        .map_list {display: none; background-color: rgba(255,255,255,0.7);}
+        .map_list li {cursor: pointer; height: 25px;}
+        .map_list li:first-child {background-color: #6d9811; color: #fff; font-weight: bold; text-align: center; cursor: none;}
+        
+        #store_result {margin-bottom: 50px;}
+        #store_result ul {border-bottom: 1px solid #b68957; box-sizing: border-box; color: #777; position: relative;}
+        #store_result li {display: inline-block; line-height: 50px; padding: 5px 10px;}
+        #store_result ul:first-child {background-color: #b68957; color: white; font-weight: bold;}
+        #store_result li:nth-child(1) {width: 250px;}
+        #store_result li:nth-child(2) {width: 150px;}
+        #store_result li:nth-child(3) {width: 700px;}
+        #store_result ul:first-child li:nth-child(3):after {display: none;}
+        #store_result li:nth-child(3):after {
+            content: '';
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            background: url(data/graphic/ico_more2.png) no-repeat center center;
+            background-size: contain;
+            vertical-align: middle;
+            margin-left: 6px;
+            cursor: pointer;
+        }
+        #store_photo {
+            display: none;
+            position: absolute;
+            left: 170px;
+            top: 60px;
+            width: 1030px;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #fff;
+            border-bottom: 1px solid #6d9811;
+            border-left: 1px solid #6d9811;
+            z-index: 10;
+            transition: 2s;
+            overflow: hidden;
+        }
+        #store_photo img {width: 100px; height: 100px; float: left;}
+        #store_result ul:hover #store_photo {display: block;}
+        #store_photo p {color: #6d9811; font-weight: bold;}
+        #store_photo span {font-weight: bold;}
+        #store_photo > div {float: left; margin-left: 100px;}
+        
+     
+        .page {color: #777; margin: 20px 0 100px; text-align: center; font-size: 0.9em;}
+        .page a {margin: 0 10px;}
+        .page a:hover {color: #6d9811; font-weight: bold;}
+        .page span:hover {color: #6d9811; font-weight: bold; cursor: pointer;}
+        
+        
+        #map_road {
+            position: absolute;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 99;
+            display: none;
+        }
+        
+    </style>
+    
+</head>
+<body>
+    
+    
+
+    <div id="navigation"></div>
+        
+    <div class="wrap">
+        
+      <div class="category3_top">
+          <h1>매장찾기</h1>
+          <div><a href="index.html">홈</a> &#10095; 매장찾기</div>
+      </div>
+        
+        <div style="text-align: center">
+        <img src="data/graphic/map_0.jpg" usemap="#map" id="map">
+        <map name="map">
+								<area shape="poly" id="mapCode-09" data-id="1" alt="서울특별시" coords="161,150,165,160,180,160,193,150,184,139,174,138,163,146">
+                                <area shape="poly" id="mapCode-02" data-id="2" alt="경기도" coords="160,145,150,142,144,132,157,126,157,117,169,108,167,96,186,93,192,105,213,116,210,130,214,145,226,152,228,166,229,183,204,200,193,204,169,204,156,196,151,186,157,168,163,162,182,169,195,156,197,144,184,130,168,130,160,143">
+								<area shape="poly" id="mapCode-12" data-id="3" alt="인천광역시" coords="141,130,123,125,114,138,125,161,117,175,99,176,102,188,123,192,138,180,130,169,139,162,152,166,162,161,158,148,147,148,142,132">
+								<area shape="poly" id="mapCode-01" data-id="4" alt="강원도" coords="206,88,195,83,186,92,195,99,212,112,216,133,223,146,236,149,235,167,235,183,242,187,249,178,271,183,292,196,316,193,339,195,347,183,343,165,321,138,298,102,284,76,276,62,270,75,258,73,253,88,219,89,206,88">
+								<area shape="poly" id="mapCode-17" data-id="5" alt="충청북도" coords="223,195,203,209,210,222,199,226,207,239,210,248,217,254,222,268,224,282,235,288,245,282,250,271,237,262,240,250,240,242,237,233,266,210,277,215,282,210,289,196,273,190,266,181,251,187,231,190,224,194">
+								<area shape="poly" id="mapCode-16" data-id="6" alt="충청남도" coords="206,218,191,205,171,212,157,201,146,203,134,198,116,217,115,231,135,254,143,268,143,280,154,287,169,282,176,271,184,283,197,276,208,286,220,287,218,274,206,274,194,265,191,254,181,236,183,221,199,222">
+								<area shape="poly" id="mapCode-07" data-id="7" alt="대전광역시" coords="204,249,199,261,202,270,215,272,218,263,215,251,207,248">
+								<area shape="poly" id="mapCode-04" data-id="8" alt="경상북도" coords="272,218,259,218,241,237,245,263,257,271,245,290,245,301,266,311,267,323,275,321,274,300,298,286,309,290,315,306,306,317,296,321,308,329,324,321,338,311,357,318,365,284,353,287,348,268,355,233,358,215,349,190,324,200,292,200,288,218,276,221">
+								<area shape="poly" id="mapCode-03" data-id="9" alt="경상남도" coords="291,325,268,330,259,313,243,305,226,315,226,334,231,346,223,355,237,377,238,394,243,404,257,409,260,395,277,394,287,407,296,407,304,395,304,382,289,389,283,378,298,367,307,368,316,358,338,346,321,336,324,326,309,333,293,325">
+								<area shape="poly" id="mapCode-06" data-id="10" alt="대구광역시" coords="281,302,282,313,278,321,289,322,296,316,304,310,307,297,302,289,291,295,284,296">
+								<area shape="poly" id="mapCode-08" data-id="11" alt="부산광역시" coords="338,348,314,364,310,373,292,374,288,386,295,386,302,377,309,383,319,377,331,379,339,368,348,353,339,349">
+								<area shape="poly" id="mapCode-11" data-id="12" alt="울산광역시" coords="334,319,329,330,329,337,341,343,346,352,354,345,361,329,356,321,341,318">
+								<area shape="poly" id="mapCode-14" data-id="13" alt="전라북도" coords="223,292,206,294,200,284,184,289,178,281,169,278,164,291,142,293,148,307,138,325,133,342,146,349,163,333,179,345,189,352,218,352,220,341,221,322,234,303,240,294,230,289">
+								<area shape="poly" id="mapCode-13" data-id="14" alt="전라남도" coords="133,344,126,359,124,368,99,373,108,382,96,398,97,415,103,427,88,454,101,459,115,453,125,441,144,443,180,450,193,436,216,436,218,416,232,417,235,404,231,374,218,357,209,353,185,357,175,366,170,382,151,383,144,368,152,358,171,356,176,346,163,339,145,351,136,344">
+								<area shape="poly" id="mapCode-05" data-id="15" alt="광주광역시" coords="150,362,150,363,150,373,166,378,173,367,170,357,156,357,152,357">
+								<area shape="poly" id="mapCode-15" data-id="16" alt="제주특별자치도" coords="129,477,115,486,115,499,131,505,160,502,175,483,168,469,136,473">
+								<area shape="poly" id="mapCode-10" data-id="17" alt="세종시" coords="197,228,186,227,185,238,189,252,196,252,205,247,200,235,197,228">
+								<!--<area shape="rect" href="#" alt="울릉도" coords="372,144,406,168" />-->
+							</map>
+        </div>
+        <div id="sub_city_list">
+            <ul class="map_list">
+                <li>서울</li>
+                <li>강남구</li>
+                <li>강동구</li>
+                <li>강북구</li>
+                <li>강서구</li>
+                <li>관악구</li>
+                <li>광진구</li>
+            </ul>
+            <ul class="map_list">
+                <li>경기도</li>
+                <li>가평군</li>
+                <li>덕양구</li>
+                <li>일산동구</li>
+                <li>일산서구</li>
+                <li>과천시</li>
+                <li>광명시</li>
+            </ul>
+            <ul class="map_list">
+                <li>인천</li>
+                <li>강화군</li>
+                <li>계양구</li>
+                <li>남구</li>
+                <li>남동구</li>
+                <li>동구</li>
+                <li>부평구</li>
+            </ul>
+            <ul class="map_list">
+                <li>강원도</li>
+                <li>강릉시</li>
+                <li>고성군</li>
+                <li>동해시</li>
+                <li>삼척시</li>
+                <li>속초시</li>
+                <li>양구군</li>
+            </ul>
+            <ul class="map_list">
+                <li>충청북도</li>
+                <li>괴산군</li>
+                <li>단양군</li>
+                <li>보은군</li>
+                <li>영동군</li>
+                <li>옥천군</li>
+                <li>음성군</li>
+            </ul>
+            <ul class="map_list">
+                <li>충청남도</li>
+                <li>계룡시</li>
+                <li>공주시</li>
+                <li>금산군</li>
+                <li>논산시</li>
+                <li>당진시</li>
+                <li>보령시</li>
+            </ul>
+            <ul class="map_list">
+                <li>대전</li>
+                <li>대덕구</li>
+                <li>동구</li>
+                <li>서구</li>
+                <li>유성구</li>
+                <li>중구</li>
+            </ul>
+            <ul class="map_list">
+                <li>경상북도</li>
+                <li>경산시</li>
+                <li>경주시</li>
+                <li>고령군</li>
+                <li>구미시</li>
+                <li>군위군</li>
+                <li>김천시</li>
+            </ul>
+            <ul class="map_list">
+                <li>경상남도</li>
+                <li>거제시</li>
+                <li>거창군</li>
+                <li>고성군</li>
+                <li>김해시</li>
+                <li>남해군</li>
+                <li>밀양시</li>
+            </ul>
+            <ul class="map_list">
+                <li>대구</li>
+                <li>남구</li>
+                <li>달서구</li>
+                <li>달성군</li>
+                <li>동구</li>
+                <li>북구</li>
+                <li>서구</li>
+            </ul>
+            <ul class="map_list">
+                <li>부산</li>
+                <li>강서구</li>
+                <li>금정구</li>
+                <li>기장군</li>
+                <li>남구</li>
+                <li>동구구</li>
+                <li>동래구</li>
+            </ul>
+            <ul class="map_list">
+                <li>울산</li>
+                <li>남구</li>
+                <li>동구</li>
+                <li>북구</li>
+                <li>울주군</li>
+                <li>중구</li>
+            </ul>
+            <ul class="map_list">
+                <li>전라북도</li>
+                <li>고창군</li>
+                <li>군산시</li>
+                <li>김제시</li>
+                <li>남원시</li>
+                <li>무주군</li>
+            </ul>
+            <ul class="map_list">
+                <li>전라남도</li>
+                <li>강진군</li>
+                <li>고흥군</li>
+                <li>곡성군</li>
+                <li>광양시</li>
+                <li>구례군</li>
+            </ul>
+            <ul class="map_list">
+                <li>광주</li>
+                <li>광산구</li>
+                <li>남구</li>
+                <li>동구</li>
+                <li>북구</li>
+                <li>서구</li>
+            </ul>
+            <ul class="map_list">
+                <li>제주도</li>
+                <li>서귀포시</li>
+                <li>제주시</li>
+            </ul>
+            <ul class="map_list">
+                <li>세종시</li>
+                <li>금송로</li>
+                <li>조치원읍</li>
+            </ul>
+        </div>
+        
+        
+          <div class="search_result_top">
+              <div class="search_count"><span id="location_result">전체지역</span> 총 <span>725</span>개</div>
+          </div>
+        
+        <div id="store_result">
+            <ul>
+                <li>매장명</li>
+                <li>전화번호</li>
+                <li>주소</li>
+            </ul>
+            <ul>
+                <li>NC 서부정류장점</li>
+                <li>053-622-6751</li>
+                <li class="show_road">대구광역시 달서구 월배로 485(송현동)</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store1.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>NC 진주금산점</li>
+                <li>055-761-9119</li>
+                <li class="show_road">경상남도 진주시 금산면 중천로 80, 105호(청솔빌딩)</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store2.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>NC 신관동점</li>
+                <li></li>
+                <li class="show_road">충청남도 공주시 신금2길 23 (신관동, 1층 3호)</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store3.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>NC전남해남점</li>
+                <li>061-535-0661</li>
+                <li class="show_road">전라남도 해남군 해남읍 중앙1로 139</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store4.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>NC 웨이브 광주점</li>
+                <li>062-718-9582</li>
+                <li class="show_road">광주광역시 동구 중앙로 163번지 NC웨이브 2층 더페이스샵</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>롯데면세점 잠실점</li>
+                <li>02-3213-3884</li>
+                <li class="show_road">서울 송파구 잠실동 40-1 송파우체국사서함66 롯데면세점</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>경산신대부적점</li>
+                <li>053-817-6517</li>
+                <li class="show_road">경상북도 경산시 압량면 압독2로2길 36 더페이스샵</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>롯데백화점 인천터미널</li>
+                <li>032-431-4657</li>
+                <li class="show_road">인천광역시 미추홀구 연남로 35</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>현대면세점 무역센터점</li>
+                <li></li>
+                <li class="show_road">서울특별시 강남구 영동대로82길 19(대치동, 항진빌딩)</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>신세계면세점 인천공항점</li>
+                <li>032-743-5893</li>
+                <li class="show_road">인천광역시 중구 운서동 2851 국제공항여객터미널 내 신세계 면세점</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>홈플러스스토어즈 서면점</li>
+                <li>051-816-1116</li>
+                <li class="show_road">부산광역시 부산진구 전포3동 892-20 지하2층</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>홈플러스스토어즈 부산반여점</li>
+                <li>051-522-3193</li>
+                <li class="show_road">부산광역시 해운대구 반여동 1406-1 홈플러스테스코 반여점</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>홈플러스 송도점</li>
+                <li>032-815-4382</li>
+                <li class="show_road">인천광역시 연수구 송도국제대로 165 홈플러스 인천송도점 지하 1층 더페이스샵</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>현대백화점 디큐브시티</li>
+                <li>02-2210-9781</li>
+                <li class="show_road">서울특별시 구로구 구로1동 경인로 662번지 지하2층</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>진주상대동점</li>
+                <li>055-761-7554</li>
+                <li class="show_road">경상남도 진주시 동진로 184-1(상대동)</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>진주상대동점</li>
+                <li>055-761-7554</li>
+                <li class="show_road">경상남도 진주시 동진로 184-1(상대동)</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>진주상대동점</li>
+                <li>055-761-7554</li>
+                <li class="show_road">경상남도 진주시 동진로 184-1(상대동)</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>진주상대동점</li>
+                <li>055-761-7554</li>
+                <li class="show_road">경상남도 진주시 동진로 184-1(상대동)</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>진주상대동점</li>
+                <li>055-761-7554</li>
+                <li class="show_road">경상남도 진주시 동진로 184-1(상대동)</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>진주상대동점</li>
+                <li>055-761-7554</li>
+                <li class="show_road">경상남도 진주시 동진로 184-1(상대동)</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>진주상대동점</li>
+                <li>055-761-7554</li>
+                <li class="show_road">경상남도 진주시 동진로 184-1(상대동)</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>진주상대동점</li>
+                <li>055-761-7554</li>
+                <li class="show_road">경상남도 진주시 동진로 184-1(상대동)</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>홈플러스스토어즈 서면점</li>
+                <li>051-816-1116</li>
+                <li class="show_road">부산광역시 부산진구 전포3동 892-20 지하2층</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>홈플러스스토어즈 부산반여점</li>
+                <li>051-522-3193</li>
+                <li class="show_road">부산광역시 해운대구 반여동 1406-1 홈플러스테스코 반여점</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>홈플러스 송도점</li>
+                <li>032-815-4382</li>
+                <li class="show_road">인천광역시 연수구 송도국제대로 165 홈플러스 인천송도점 지하 1층 더페이스샵</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>현대백화점 디큐브시티</li>
+                <li>02-2210-9781</li>
+                <li class="show_road">서울특별시 구로구 구로1동 경인로 662번지 지하2층</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+            <ul>
+                <li>진주상대동점</li>
+                <li>055-761-7554</li>
+                <li class="show_road">경상남도 진주시 동진로 184-1(상대동)</li>
+                <div id="store_photo">
+                    <img src="data/graphic/photo_store5.jpg">
+                    <div><p>Memo</p><span>영업시간</span>11:30~23:30</div>
+                </div>
+            </ul>
+        </div>
+            
+            <div class="page">
+              <span>&#10094;</span>
+              <a href="javascript:show_newsletter_list(0);">1</a>
+              <a href="javascript:show_newsletter_list(1);">2</a>
+              <a href="javascript:show_newsletter_list(2);">3</a>
+              <span>&#10095;</span>
+          </div>
+        <div id="map_road">
+            
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3234.5144128298007!2d128.55401121562593!3d35.83638792905363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3565e4bc8eca8f51%3A0x146c82557166c4ce!2z7JeQ65uw65Oc7ZWY7Jqw7Iqk7ISc67aA7KCQ!5e0!3m2!1sko!2skr!4v1565147803734!5m2!1sko!2skr" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <div style="font-size: 11px; color:#6d9811; cursor: pointer; font-weight: bold; text-align: center;" onclick="close_map_road();">CLOSE</div>
+        </div>
+        
+        
+        
+    </div>
+    
+    <div id="footer"></div>
+</body>
+    
+    <script>
+        window.onload = function() {
+            show_newsletter_list(0);
+            
+            var area = document.getElementsByTagName("area");
+            var sub_city_list = document.getElementById("sub_city_list");
+            var map_list = document.getElementsByClassName("map_list");
+            var map_list_li = $(".map_list li");
+            var location_result = document.getElementById("location_result");
+            
+            for(var i=0; i<area.length; i++) {
+                area[i].onmouseover = function() {
+                    var id = $(this).attr("data-id");
+                    $("#map").attr("src", "data/graphic/map_"+id+".jpg");
+                };
+                area[i].onclick = function(event) {
+                    sub_city_list.style.top = event.pageY+"px";
+                    sub_city_list.style.left = event.pageX+"px";
+                    sub_city_list.style.display = "block";
+                    
+                    var id = $(this).attr("data-id");
+                    for(var i=0; i<map_list.length; i++) {
+                        map_list[i].style.display = "none";
+                    }
+                    map_list[--id].style.display = "block";
+                    
+                };
+                document.getElementById("map").onmouseout = function() {
+                    sub_city_list.style.display = "none";}
+                
+            }
+                for(var j=1; j<map_list_li.length; j++) {
+                
+                    map_list_li[j].onclick = function() {
+                        sub_city_list.style.display = "none";
+                        location_result.innerHTML = $(this).text();
+                };
+            }
+            var map_road = document.getElementById('map_road');
+            $('.show_road').click(function(event) {
+                map_road.style.display = "block";
+                map_road.style.top = event.pageY+"px";
+                map_road.style.left = event.pageX+"px";
+            });
+            
+        }
+        
+        function close_map_road() {map_road.style.display = "none";}
+        
+                var page = 0;
+                var page_a = document.getElementsByClassName('page')[0].getElementsByTagName('a');
+                var section_newsletter_li = document.getElementById('store_result').getElementsByTagName('ul');
+                var page_span = document.getElementsByClassName('page')[0].getElementsByTagName('span');
+        
+        function show_newsletter_list(count) {
+                page = count;
+                if(page<0) page=0;
+                else if(page>=page_a.length) page=page_a.length-1;
+            
+                for(i=0; i<section_newsletter_li.length; i++) {
+                    section_newsletter_li[i].style.display = 'none';
+                    section_newsletter_li[0].style.display = 'block';
+                }
+                for(i=0; i<10; i++) {
+                    if(section_newsletter_li[10*page+i]!=undefined) section_newsletter_li[10*page+i].style.display = 'block';
+                    if(10*page+i == 0) section_newsletter_li[10*page+10].style.display = 'block';
+                }
+                $('.page a').css({
+                        'color': '',
+                        'font-weight': '',
+                        'pointer-events': 'all'});
+            page_span[0].style.visibility = 'visible';
+            page_span[1].style.visibility = 'visible';
+                switch(page) {
+                    case 0: $('.page a:nth-child(2)').css({
+                        'color': '#6d9811',
+                        'font-weight': 'bold',
+                        'pointer-events': 'none'})
+                        page_span[0].style.visibility = 'hidden';
+                        break;
+                    case 1: $('.page a:nth-child(3)').css({
+                        'color': '#6d9811',
+                        'font-weight': 'bold',
+                        'pointer-events': 'none'})
+                        break;
+                    case 2: $('.page a:nth-child(4)').css({
+                        'color': '#6d9811',
+                        'font-weight': 'bold',
+                        'pointer-events': 'none'})
+                        page_span[1].style.visibility = 'hidden';
+                        break;
+                }
+        }
+                page_span[0].addEventListener('click', function() {
+                    show_newsletter_list(--page);
+                });
+                page_span[1].addEventListener('click', function() {
+                    show_newsletter_list(++page);
+                });
+        
+    </script>
+</html>

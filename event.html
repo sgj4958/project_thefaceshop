@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" sizes="16x16 32x32" href="data/graphic/favicon.ico">
+<title>THE FACE SHOP REMAKE</title>
+    <link href="header.css" type="text/css" rel="stylesheet">
+    <link href="footer.css" type="text/css" rel="stylesheet">
+    <link href="common.css" type="text/css" rel="stylesheet">
+    
+    <style>
+        
+        .bg {width: 250px; height: 250px; background-size: contain; background-position: right center; background-repeat: no-repeat; background-color: rgba(0,0,0,0.8);}
+        
+        .category3_top {margin-top: 100px; margin-bottom: 20px;}
+        .category3_top div {float: right; font-size: 0.8em; color: #aaa;}
+        .category3_top h1 {float: left;}
+        .category3_top div:after {clear: both;}
+        
+        .category3 {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            z-index: 0;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .category3 ul {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .category3 ul::selection {color: #6d9811;}
+        .category3 li {
+            float: left;
+            display: inline-block;
+            width: 25%;
+            height: 100%;
+            line-height: 50px;
+            text-indent: 10px;
+            z-index: 9;
+            color: #3b322b;
+            font-size: 0.9em;
+        }
+        .category3 li:hover {color: #fff; background-color: #6d9811;}
+        .category3_column {
+            position: absolute;
+            height: 100%;
+            width: 1px;
+            background-color: #ddd;
+        }
+        .category3_column:nth-child(1) {left: 25%;}
+        .category3_column:nth-child(2) {left: 50%;}
+        .category3_column:nth-child(3) {left: 75%;}
+        
+        #category3_li_clicked {border: 1px solid #6d9811; box-sizing: border-box; color: #6d9811;}
+        #category3_li_clicked:hover {color: #fff;}
+        .category3 span {font-size: 0.9em; color: #aaa; margin-left: 5px;}
+        
+        
+        
+        .section_newsletter *{transition: all 0.6s ease;}
+        .section_newsletter li {
+            float: left;
+            width: 250px;
+            position: relative;
+            overflow: hidden;
+            perspective: 50em;
+        }
+        .section_newsletter ul {overflow: hidden;}
+        .section_newsletter .wrap_top li {margin-left: 250px;}
+        .section_newsletter .wrap_bottom li {margin-right: 250px;}
+        .section_newsletter .inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%; 
+            padding: 30px 26px 40px;
+            background-color: rgba(0,0,0,1);
+            transform: rotateX(90deg);
+            transform-origin: 50% 100%;
+            opacity: 0;
+            z-index: 1;
+            border: 3px solid #6d9811;
+            box-sizing: border-box;
+        }
+        .section_newsletter .title {font-size: 16px; color: #bea36b; display: block; font-weight: 600;}
+        .section_newsletter .desc {
+            font-size: 16px;
+            color: #fff;
+            display: block;
+            padding: 15px 0 25px;
+            width: 100%;
+        }
+        .section_newsletter .bg {opacity: 1; transform-origin: 50% 0;}
+        .section_newsletter li:hover .bg {transform: rotateX(-90deg); opacity: 0;}
+        .section_newsletter li:hover .inner {transform: rotateX(0deg); opacity: 1; transition-delay: 0.2s;}
+        
+        
+        .section_newsletter .sale {
+            position: absolute;
+            color: white; 
+            background-color: red;
+            left: 0px;
+            top: 0;
+            padding: 3px 6px;
+            font-size: 0.8em;
+            font-weight: bold;
+            animation-name: sale;
+            animation-iteration-count: infinite;
+            animation-duration: 2s;
+            z-index: 2;
+        }
+        @keyframes sale {
+            0% {transform: rotate(0deg);}
+            30% {transform: rotate(10deg);}
+            45% {transform: rotate(-5deg);}
+            50% {transform: rotate(3deg);}
+            60% {transform: rotate(-1deg);}
+            70% {transform: rotate(0deg);}
+            100% {}
+        }
+        
+    </style>
+
+</head>
+    
+<body>
+
+    <div id="navigation"></div>
+        
+    
+
+  <div class="wrap">
+      <div class="category3_top">
+          <h1>이벤트</h1>
+          <div><a href="index.html">홈</a> &#10095; <a href="#">이벤트</a></div>
+      </div>
+      <div class="category3">
+          <div class="category3_column"></div>
+          <div class="category3_column"></div>
+          <div class="category3_column"></div>
+          <ul>
+              <li id="category3_li_clicked"><a href="javascript:;">진행중</a><span>(5)</span></li>
+              <li><a href="javascript:;">뷰티 체험단</a><span></span></li>
+              <li><a href="javascript:;">당첨자 발표</a><span></span></li>
+              <li><a href="javascript:;">종료</a><span>(123)</span></li>
+              
+          </ul>
+      </div>
+
+        
+        <div class="section_newsletter">
+            
+            <div style="margin: 30px 100px 100px;">
+            <div class="wrap_top">
+                <ul>
+                    <li>
+                        <div class="sale">D-14</div>
+                        <a href="data/graphic/banner_event1_1.jpg" target="_blank">
+                        <div class="bg" style="background-image: url(data/graphic/banner_event1.jpg);"></div>
+                            <div class="inner">
+                                
+                                <div class="title">컬러페스티벌</div>
+                                <span class="desc"></span>
+                                
+                        </div></a>
+                    </li>
+                    <li>
+                        <div class="sale">D-7</div>
+                        <a href="data/graphic/banner_event2_1.jpg" target="_blank">
+                        <div class="bg" style="background-image: url(data/graphic/banner_event2.jpg);"></div>
+                            <div class="inner">
+                                
+                                <div class="title">마스크시트 2+2</div>
+                                <span class="desc"></span>
+                                
+                        </div></a>
+                    </li>
+                </ul>
+                </div>
+                <div class="wrap_bottom">
+                    <ul>
+                    <li>
+                        <div class="sale">D-22</div>
+                        <a href="data/graphic/banner_event3_1.jpg" target="_blank">
+                        <div class="bg" style="background-image: url(data/graphic/banner_event3.jpg);"></div>
+                            <div class="inner">
+                                
+                                <div class="title">수딩젤 1+1</div>
+                                <span class="desc"></span>
+                                
+                        </div></a>
+                    </li>
+                    <li>
+                        <div class="sale">D-17</div>
+                        <a href="data/graphic/banner_event4_1.jpg" target="_blank">
+                        <div class="bg" style="background-image: url(data/graphic/banner_event4.jpg);"></div>
+                            <div class="inner">
+                                
+                                <div class="title">선크림 1+1</div>
+                                <span class="desc"></span>
+                                
+                        </div></a>
+                    </li>
+        
+                </ul>
+            </div>
+
+                <div class="wrap_top">
+                    <ul>
+                    <li>
+                        <div class="sale">D-99</div>
+                        <a href="data/graphic/banner_event5_1.jpg" target="_blank">
+                        <div class="bg" style="background-image: url(data/graphic/banner_event5.jpg);"></div>
+                            <div class="inner">
+                                <div class="title">루즈립스틱 구매시<br>파우치 증정!</div>
+                                <span class="desc"></span>
+                                
+                        </div></a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      
+      
+  </div>
+    
+    
+    
+    
+    <div id="footer"></div>
+</body>
+    
+    <script type="text/javascript" src="header.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $("#navigation").load("header.html");
+            $("#footer").load("footer.html");
+        });
+        
+        var category3_li = document.getElementsByClassName('category3')[0].getElementsByTagName('li');
+        for(i=0; i<category3_li.length; i++) {
+            category3_li[i].addEventListener('click', function() {
+                for(j=0; j<category3_li.length; j++) {
+                    category3_li[j].id = '';
+                }
+                this.id = 'category3_li_clicked';
+            });
+            }
+        
+        var d_day = document.getElementsByClassName('section_newsletter')[0].getElementsByClassName('sale');
+        var ing_day = document.getElementsByClassName('section_newsletter')[0].getElementsByClassName('desc');
+        for(i=0; i<d_day.length; i++) {
+            var day = $(d_day[i]).text().replace('D-','');
+            day = Number(day);
+            var date = new Date();
+            var date_y = date.getFullYear();
+            var date_m = (date.getMonth()+1);
+            var date_d = date.getDate();
+            date.setDate(date.getDate()+day);
+            var date_plus_day_y = date.getFullYear();
+            var date_plus_day_m = (date.getMonth()+1);
+            var date_plus_day_d = date.getDate();
+            ing_day[i].innerHTML = date_y+'.'+date_m+'.'+date_d+'~'+date_plus_day_y+'.'+date_plus_day_m+'.'+date_plus_day_d;
+        }
+        
+    </script>
+</html>

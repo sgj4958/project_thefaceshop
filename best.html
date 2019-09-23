@@ -1,0 +1,580 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" sizes="16x16 32x32" href="data/graphic/favicon.ico">
+<title>THE FACE SHOP REMAKE</title>
+    <link href="header.css" type="text/css" rel="stylesheet">
+    <link href="footer.css" type="text/css" rel="stylesheet">
+    <link href="common.css" type="text/css" rel="stylesheet">
+    
+    <style>
+        
+        .bg {width: 250px; height: 250px; background-size: cover; background-position: center center;}
+        
+        .category3_top {margin-top: 100px; margin-bottom: 20px;}
+        .category3_top div {float: right; font-size: 0.8em; color: #aaa;}
+        .category3_top h1 {float: left;}
+        .category3_top div:after {clear: both;}
+        
+        .category3 {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            z-index: 0;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .category3 ul {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .category3 ul::selection {color: #6d9811;}
+        .category3 li {
+            float: left;
+            display: inline-block;
+            width: 20%;
+            height: 50%;
+            line-height: 50px;
+            text-indent: 10px;
+            z-index: 9;
+            color: #3b322b;
+            font-size: 0.9em;
+        }
+        .category3 li:hover {color: #fff; background-color: #6d9811;}
+        .category3_column {
+            position: absolute;
+            height: 100%;
+            width: 1px;
+            background-color: #ddd;
+        }
+        .category3_row {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            background-color: #ddd;
+        }
+        .category3_column:nth-child(1) {left: 20%;}
+        .category3_column:nth-child(2) {left: 40%;}
+        .category3_column:nth-child(3) {left: 60%;}
+        .category3_column:nth-child(4) {left: 80%;}
+        .category3_row {top: 50%;}
+        
+        #category3_li_clicked {border: 1px solid #6d9811; box-sizing: border-box; color: #6d9811;}
+        #category3_li_clicked:hover {color: #fff;}
+        .category3 span {font-size: 0.9em; color: #aaa; margin-left: 5px;}
+        
+        .search {position: relative; margin-top: 50px;}
+        .search input[type="checkbox"] {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip:rect(0,0,0,0);
+            border: 0;
+        }
+        .search input[type="checkbox"]+label {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+            width: 20%;
+            height: 50px;
+            line-height: 50px;
+            margin-left: 10px;
+            color: #3b322b;
+            font-size: 0.9em;
+        }
+        .search input[type="checkbox"]+label:before {
+            content: "";
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            line-height: 15px;
+            margin: -2px 8px 0 0;
+            text-align: center;
+            vertical-align: middle;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+        .search input[type="checkbox"]+label:active:before, .search input[type="checkbox"]:checked+label:active:before {
+            box-shadow: 0px 0px 15px #6d9811; transition: 1s;
+        }
+        .search input[type="checkbox"]:checked+label:before{
+            content: '\2713';
+            color: #fff;
+            text-shadow: 1px 1px white;
+            background: #6d9811;
+            border-color: #ddd;
+            transition: .5s;
+        }
+        .search input[type="checkbox"]:checked+label {color: #6d9811; transition: 1s;}
+        .search > div {border-bottom: 1px solid #ddd;}
+        .search > div:first-child {border-top: 1px solid #ddd;}
+        .search_btn {
+            width: 250px; 
+            height: auto;
+            margin: 20px auto;
+        }
+        .search_excute, .search_cancel {
+            display: inline-block;
+            width: 120px;
+            height: 45px;
+            border: 1px solid #3b322b;
+            box-sizing: border-box;
+            padding: 10px;
+            text-align: center;
+            line-height: 50%;
+            cursor: pointer;
+        }
+        .search_excute {background-color: #3b322b; color: white;}
+        .search_cancel {background-color: #fff; color: #3b322b;}
+        
+        
+        .search_result_top {
+            position: relative;
+            margin: 100px 0 50px;
+            border-bottom: 1px solid #ddd;
+            clear: both;
+            height: 34px;
+        }
+        .search_count {
+            position: absolute;
+            left: 0;
+            color: #3b322b;
+            text-align: center;
+            line-height: 28px;
+            height: 14px;
+        }
+        .search_count span {color: #6d9811;}
+        .search_sort {list-style: none; position: absolute; right: 0;}
+        .search_sort li {
+            display: inline-block; 
+            width: 100px; 
+            border-right: 1px solid #ddd;
+            text-align: center; 
+            color: #3b322b; 
+            font-size: 0.8em;
+            line-height: 14px;
+            height: 14px;
+        }
+        .search_sort li:last-child {border: 0;}
+        .search_sort ul li:first-child {color: #6d9811;}
+        
+        
+        .bg_best {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 70px;
+            height: 70px;
+            background: url(data/graphic/ico_bestseller.png) no-repeat center center;
+            background-size: contain;
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #6d9811;
+            line-height: 63px;
+            text-align: center;
+            z-index: 3;
+        }
+        .special_bg_best {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 0px;
+            height: 0px;
+            border-bottom: 50px solid red;
+            border-right: 50px solid red;
+            border-top: 100px solid transparent;
+            border-left: 100px solid transparent;
+            z-index: 2;
+        }
+        .special_bg_best_1 {}
+        .special_bg_best_2 {border-bottom-color: orange; border-right-color: orange;}
+        .special_bg_best_3 {border-bottom-color: yellow; border-right-color: yellow;}
+        
+        
+        
+        .shinny {
+            position: absolute;
+            width: 200%;
+            height: 50px;
+            top: -20px;
+            left: 0;
+            background-color: rgba(255,255,255,0.7);
+            opacity: 0;
+            transform: rotate(-45deg);
+            transform-origin: left;
+            z-index: 1;
+            
+            opacity: 1;
+            animation-name: shinny;
+            animation-duration: 1.5s;
+            animation-iteration-count: infinite;
+        }
+        .kakao li:hover .shinny {
+        }
+        @keyframes shinny {
+            from {top: -20px;}
+            to {top: 600px;}
+        }
+        
+        
+        
+        .kakao {margin-bottom: 100px; position: relative;}
+        .kakao li {
+            display: inline-block; 
+            width: 250px; 
+            border: 1px solid #cccccc; 
+            margin: 0 1.5%; 
+            position: relative; 
+            margin-bottom: 3%;
+            overflow: hidden;
+        }
+        .kakao .copy {width: 100%; padding: 30px 26px 40px; box-sizing: border-box;}
+        .kakao .btn_blog {font-size: 16px; color: #bea36b; display: block; font-weight: 600;}
+        div.kakao .desc {
+            font-size: 16px;
+            color: #000;
+            display: block;
+            padding: 15px 0 25px;
+            line-height: 28px;
+            max-height: 20px;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+        
+        .kakao_li_border_bottom, .kakao_li_border_left, .kakao_li_border_top, .kakao_li_border_right {background-color: #6d9811; width: 0; height: 0; transition-duration: 1s;}
+        
+        .kakao_li_border_bottom {position: absolute; left: 0; bottom: -1px;} 
+        .kakao_li_border_right {position: absolute; right: -1px; bottom: 0;} 
+        .kakao_li_border_top {position: absolute; right: 0; top: -1px;} 
+        .kakao_li_border_left {position: absolute; left: -1px; top: 0;}
+        .kakao li:hover .kakao_li_border_bottom, .kakao li:hover .kakao_li_border_top {height: 2px; width: 100%;  transition: width 0.2s;}
+        .kakao li:hover .kakao_li_border_right, .kakao li:hover .kakao_li_border_left {width: 2px; height: 100%; transition: height 0.2s; transition-delay: 0.2s;}
+        span.price:before {
+            content: ""; 
+            display: inline-block; 
+            background: url(data/graphic/krw.png) no-repeat center center; 
+            width: 20px; 
+            height: 20px; 
+            background-size: contain; 
+            position: relative; 
+            top: 4px; 
+            margin-right: 5px;
+        }
+        span.price {display: block; color: goldenrod; font-weight: 700;}
+        .kakao .status {
+            position: absolute;
+            left: 10px;
+            width: 60px; 
+            height: 25px;
+            color: #bea36b; 
+            border: 2px solid #bea36b; 
+            box-sizing: border-box; 
+            font-size: 0.7em;
+            text-align: center;
+            padding: 3px;
+            top: 5%;
+        }
+        .kakao .sale {
+            position: absolute;
+            color: white; 
+            background-color: red;
+            right: 0;
+            top: 0;
+            padding: 3px 6px;
+            font-size: 0.8em;
+            font-weight: bold;
+            animation-name: sale;
+            animation-iteration-count: infinite;
+            animation-duration: 2s;
+        }
+        .sale_price {
+            color: #aaa; 
+            text-decoration: line-through; 
+            margin-right: 5px; 
+            font-size: 0.9em;
+        }
+        @keyframes sale {
+            0% {transform: rotate(0deg);}
+            30% {transform: rotate(10deg);}
+            45% {transform: rotate(-5deg);}
+            50% {transform: rotate(3deg);}
+            60% {transform: rotate(-1deg);}
+            70% {transform: rotate(0deg);}
+            100% {}
+        }
+        
+        
+        .more {
+            border: 2px solid #bea36b; 
+            font-size: 0.8em; 
+            padding: 5px 10px; 
+            color: #bea36b;
+            font-weight: bold; 
+            margin-bottom: 20px; 
+            transition: 0.3s;
+            width: 93%;
+            margin-left: 1.5%;
+            text-align: center;
+        }
+        .more:hover {background-color: #bea36b; color: white;}
+        
+        
+    </style>
+
+</head>
+    
+<body>
+
+    <div id="navigation"></div>
+        
+    
+    
+    
+
+  <div class="wrap">
+      <div class="category3_top">
+          <h1>베스트</h1>
+          <div><a href="index.html">홈</a> &#10095; <a href="#">베스트</a></div>
+      </div>
+      <div class="category3">
+          <div class="category3_column"></div>
+          <div class="category3_column"></div>
+          <div class="category3_column"></div>
+          <div class="category3_column"></div>
+          <div class="category3_row"></div>
+          <ul>
+              <li id="category3_li_clicked"><a href="javascript:;">TOP100</a><span>(100)</span></li>
+              <li><a href="javascript:;">스킨케어</a><span>(17)</span></li>
+              <li><a href="javascript:;">마스크/팩</a><span>(21)</span></li>
+              <li><a href="javascript:;">클렌징</a><span>(23)</span></li>
+              <li><a href="javascript:;">베이스메이크업</a><span>(7)</span></li>
+              <li><a href="javascript:;">포인트메이크업</a><span>(9)</span></li>
+              <li><a href="javascript:;">바디/헤어</a><span>(4)</span></li>
+              <li><a href="javascript:;">향수/소품/네일</a><span>(10)</span></li>
+              <li><a href="javascript:;">선케어</a><span>(13)</span></li>
+              <li><a href="javascript:;">남성</a><span>(13)</span></li>
+              
+          </ul>
+      </div>
+      
+      <form>
+<!--
+      <div class="search">
+        <div>
+            <input type="checkbox" id="check1"><label for="check1">건성</label>
+            <input type="checkbox" id="check2"><label for="check2">민감성</label>
+        </div>
+        <div>
+            <input type="checkbox" id="check3"><label for="check3">수분/보습</label>
+            <input type="checkbox" id="check4"><label for="check4">미백</label>
+            <input type="checkbox" id="check5"><label for="check5">주름개선/탄력</label>
+            <input type="checkbox" id="check6"><label for="check6">피지/모공</label>
+            <input type="checkbox" id="check7"><label for="check7">민감성/트러블</label>
+            <input type="checkbox" id="check8"><label for="check8">각질</label>
+            <input type="checkbox" id="check9"><label for="check9">영양공급</label>
+        </div>
+        <div>
+            <input type="checkbox" id="check10"><label for="check10">한방</label>
+            <input type="checkbox" id="check11"><label for="check11">수분/보습</label>
+            <input type="checkbox" id="check12"><label for="check12">주름개선/탄력</label>
+            <input type="checkbox" id="check13"><label for="check13">기미/주근깨</label>
+        </div>
+      </div>
+        <div class="search_btn">
+            <input type="submit" class="search_excute" value="조건검색하기">
+            <input type="reset" class="search_cancel" value="선택초기화">
+        </div>
+
+          <div class="search_result_top">
+              <div class="search_count">총 <span>141</span>개</div>
+          <div class="search_sort">
+              <ul>
+                  <li><a href="#">인기순</a></li>
+                  <li><a href="#">신상품순</a></li>
+                  <li><a href="#">상품평순</a></li>
+                  <li><a href="#">높은가격순</a></li>
+                  <li><a href="#">낮은가격순</a></li>
+              </ul>
+          </div>
+          </div>
+-->
+          
+        <div class="kakao">
+            <div style="margin-top: 50px;">
+                <ul style="list-style: none;">
+                    <li><a href="sub_product_product.html">
+                        <div class="kakao_li_border_bottom"></div>
+                        <div class="kakao_li_border_right"></div>
+                        <div class="kakao_li_border_top"></div>
+                        <div class="kakao_li_border_left"></div>
+                        
+                        <div class="status">수분/보습</div>
+                        <div class="status" style="top: 13%">영양공급</div>
+                        <div class="status" style="top: 21%">건성</div>
+                        
+                        <div class="sale">50% 할인</div>
+                        <div class="shinny"></div>
+                        
+                        <div class="bg_best">1</div>
+                        <div class="special_bg_best special_bg_best_1"></div>
+                        
+                        <div class="bg" style="background-image: url(data/graphic/sub_product1.jpg);"></div>
+                        
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">아르쌩뜨</div>
+                                <span class="desc">에코-테라피 토닉 위드 에센셜</span>
+                                <span class="price"><span class="sale_price">34,000</span>17,000</span>
+                            </div>
+                        </div></a>
+                    </li>
+                    <li><a href="sub_product_product.html">
+                        <div class="kakao_li_border_bottom"></div>
+                        <div class="kakao_li_border_right"></div>
+                        <div class="kakao_li_border_top"></div>
+                        <div class="kakao_li_border_left"></div>
+                        
+                        <div class="status">영양공급</div>
+                        <div class="status" style="top: 13%">주름개선</div>
+                        <div class="status" style="top: 21%">수분/보습</div>
+                        
+                        <div class="sale">90% 할인</div>
+                        <div class="shinny"></div>
+                        
+                        <div class="bg_best">2</div>
+                        <div class="special_bg_best special_bg_best_2"></div>
+                        
+                        <div class="bg" style="background-image: url(data/graphic/sub_product2.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">예화담</div>
+                                <span class="desc">생기 순환 수액</span>
+                                <span class="price"><span class="sale_price">260,000</span>26,000</span>
+                            </div>
+                        </div></a>
+                    </li>
+                    <li><a href="sub_product_product.html">
+                        <div class="kakao_li_border_bottom"></div>
+                        <div class="kakao_li_border_right"></div>
+                        <div class="kakao_li_border_top"></div>
+                        <div class="kakao_li_border_left"></div>
+                        
+                        <div class="status">민감성</div>
+                        <div class="status" style="top: 13%">수분/보습</div>
+                        
+                        <div class="shinny"></div>
+                        <div class="bg_best">3</div>
+                        <div class="special_bg_best special_bg_best_3"></div>
+                        
+                        <div class="bg" style="background-image: url(data/graphic/sub_product3.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">닥터벨머</div>
+                                <span class="desc">데일리 리페어 토너</span>
+                                <span class="price">18,000</span>
+                            </div>
+                        </div></a>
+                    </li>
+                    <li><a href="sub_product_product.html">
+                        <div class="kakao_li_border_bottom"></div>
+                        <div class="kakao_li_border_right"></div>
+                        <div class="kakao_li_border_top"></div>
+                        <div class="kakao_li_border_left"></div>
+                        
+                        <div class="status">민감성</div>
+                        <div class="status" style="top: 13%">피지/모공</div>
+                        <div class="status" style="top: 21%">각질</div>
+                        
+                        <div class="bg_best">4</div>
+                        
+                        <div class="bg" style="background-image: url(data/graphic/sub_product4.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">닥터벨머</div>
+                                <span class="desc">클래리파잉 토너</span>
+                                <span class="price">18,000</span>
+                            </div>
+                        </div></a>
+                    </li>
+                    
+                    <li><a href="sub_product_product.html">
+                        <div class="kakao_li_border_bottom"></div>
+                        <div class="kakao_li_border_right"></div>
+                        <div class="kakao_li_border_top"></div>
+                        <div class="kakao_li_border_left"></div>
+                        
+                        <div class="status">주름개선</div>
+                        <div class="status" style="top: 13%">수분/보습</div>
+                        <div class="status" style="top: 21%">영양공급</div>
+                        
+                        <div class="bg_best">5</div>
+                        
+                        <div class="bg" style="background-image: url(data/graphic/sub_product5.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">그린 내츄럴 씨드</div>
+                                <span class="desc">항산화 토너</span>
+                                <span class="price">22,000</span>
+                            </div>
+                        </div></a>
+                    </li>
+                    <li><a href="sub_product_product.html">
+                        <div class="kakao_li_border_bottom"></div>
+                        <div class="kakao_li_border_right"></div>
+                        <div class="kakao_li_border_top"></div>
+                        <div class="kakao_li_border_left"></div>
+                        
+                        <div class="status">수분/보습</div>
+                        <div class="status" style="top: 13%">영양공급</div>
+                        
+                        <div class="bg_best">6</div>
+                        
+                        <div class="bg" style="background-image: url(data/graphic/sub_product6.jpg);"></div>
+                        <div class="copy">
+                            <div class="copy_inner">
+                                <div class="btn_blog">망고 씨드</div>
+                                <span class="desc">보습 토너</span>
+                                <span class="price">10,000</span>
+                            </div>
+                        </div></a>
+                    </li>
+        
+                </ul>
+            </div>
+            <a href="javascript:;"><div class="more">MORE &#10176;</div></a>
+        </div>
+          
+          
+        </form>
+  </div>
+    
+    
+    
+    
+    <div id="footer"></div>
+</body>
+    
+    <script type="text/javascript" src="header.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $("#navigation").load("header.html");
+            $("#footer").load("footer.html");
+        });
+        
+        var category3_li = document.getElementsByClassName('category3')[0].getElementsByTagName('li');
+        for(i=0; i<category3_li.length; i++) {
+            category3_li[i].addEventListener('click', function() {
+                for(j=0; j<category3_li.length; j++) {
+                    category3_li[j].id = '';
+                }
+                this.id = 'category3_li_clicked';
+            });
+            }
+    </script>
+</html>

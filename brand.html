@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" sizes="16x16 32x32" href="data/graphic/favicon.ico">
+<title>THE FACE SHOP REMAKE</title>
+    <link href="header.css" type="text/css" rel="stylesheet">
+    <link href="footer.css" type="text/css" rel="stylesheet">
+    <link href="common.css" type="text/css" rel="stylesheet">
+    
+    <style>
+        
+        .bg {width: 100%; height: 250px; background-size: cover; background-position: center right;}
+        .wrap {overflow: hidden;}
+        
+        .category3_top {margin-top: 100px; margin-bottom: 20px;}
+        .category3_top div {float: right; font-size: 0.8em; color: #aaa;}
+        .category3_top h1 {float: left;}
+        .category3_top div:after {clear: both;}
+        
+        .category3 {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            z-index: 0;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .category3 ul {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .category3 ul::selection {color: #6d9811;}
+        .category3 li {
+            float: left;
+            display: inline-block;
+            width: 25%;
+            height: 100%;
+            line-height: 50px;
+            text-indent: 10px;
+            z-index: 9;
+            color: #3b322b;
+            font-size: 0.9em;
+        }
+        .category3 li:hover {color: #fff; background-color: #6d9811;}
+        .category3_column {
+            position: absolute;
+            height: 100%;
+            width: 1px;
+            background-color: #ddd;
+        }
+        .category3_column:nth-child(1) {left: 25%;}
+        .category3_column:nth-child(2) {left: 50%;}
+        .category3_column:nth-child(3) {left: 75%;}
+        
+        #category3_li_clicked {border: 1px solid #6d9811; box-sizing: border-box; color: #6d9811;}
+        #category3_li_clicked:hover {color: #fff;}
+        .category3 span {font-size: 0.9em; color: #aaa; margin-left: 5px;}
+        
+        .brand_element {width: 800px; height: 400px; position: relative; clear: both;}
+        .brand_element:nth-of-type(2n) {margin-left: 400px;}
+        .brand_element:nth-of-type(2n+1) {margin-right: 400px;}
+        .brand_element img {height: 100%; width: 50%; float: left;}
+        .brand_element div {width: 300px; height: 100%; float: left; margin: 0 50px;}
+        .brand_element p {color: #3b322b; font-size: 3em; font-weight: bold; margin: 40px 0;}
+        .brand_element:nth-of-type(2n) p {text-align: right;}
+        .brand_element:nth-of-type(2n+1) p {text-align: left;}
+        .brand_element div:before {
+            content: '';
+            top: 20%;
+            left: 350px;
+            width: 100px;
+            height: 5px;
+            background-color: #3b322b;
+            position: absolute;
+            display: block;
+        }
+        .flying_ani_wrap:nth-of-type(2n) {margin-left: 400px;}
+        .flying_ani_wrap:nth-of-type(2n+1) {margin-right: 400px;}
+        .flying_ani_wrap:nth-of-type(2n) p {text-align: right;}
+        .flying_ani_wrap:nth-of-type(2n+1) p {text-align: left;}
+        
+    </style>
+
+</head>
+    
+<body>
+
+    <div id="navigation"></div>
+        
+    
+
+  <div class="wrap">
+      <div class="category3_top">
+          <h1>이벤트</h1>
+          <div><a href="index.html">홈</a> &#10095; <a href="#">브랜드</a></div>
+      </div>
+      <div class="category3">
+          <div class="category3_column"></div>
+          <div class="category3_column"></div>
+          <div class="category3_column"></div>
+          <ul>
+              <li id="category3_li_clicked"><a href="javascript:;">Brand</a><span></span></li>
+              <li><a href="javascript:;">BI</a><span></span></li>
+              <li><a href="javascript:;">History</a><span></span></li>
+              <li><a href="javascript:;">Global</a><span></span></li>
+              
+          </ul>
+      </div>
+
+</div><img src="data/graphic/brand_0.jpg" style="margin: 30px 0;"><div class="wrap" style="margin-bottom: 100px;">
+    
+      
+      <div style="position: relative; text-align: center;">
+          <img src="data/graphic/brand_1.jpg" width="100%" height="100%">
+          <div style="position: absolute; 
+                      top: 10%;
+                      color: #b68957; 
+                      font-weight: bold;
+                      font-size: 1.2em;
+                      color: #fff;
+                      width: 100%;
+                      height: 40px;
+                      line-height: 40px;
+                      text-shadow: 0 0 2px #000;
+                      background-image: url(data/graphic/tree2.jpg);
+                      background-repeat: no-repeat;
+                      background-position: center;
+                      background-attachment: fixed;">-자연의 이야기를 함께 나눕니다.</div>
+      </div>
+      <div class="brand_element">
+          <div><p>자연에서,<br>담고,</p>
+더페이스샵은 자연 그대로의 가치를 담습니다.
+새롭게 바뀐 더페이스샵의 엠블램 모티브는 세상에
+스스로 존재하는 자연의 힘을 믿고 그 생명력을
+솔직하게 담은 항아리를 모티브로 디자인되었습니다.</div>
+          <img src="data/graphic/brand_2.png">
+      </div>
+      <div class="brand_element">
+          <img src="data/graphic/brand_3.png">
+          <div><p>자연에서,<br>아름다움을 <br>실현하다.</p>
+더페이스샵의 엠블램 중앙의 얼굴은 자연 그대로를
+솔직하게 그대로 담아 그 생명력으로 실현되는 자연의
+궁극적인 아름다움 (美)을 나타내고자하는
+더페이스샵만의 의지를 표현합니다.</div>
+      </div>
+      <div class="brand_element">
+          <div><p>제주화산토</p>
+60만년 전 한라산이 폭발할 때 용암이
+급격히 빠른 속도로 굳어 만들어진 미세한
+다공질 성분으로, 피지 흡착을
+돕고 모공 속까지 청정하게 가꾸어주는
+천연 희귀 원료입니다.</div>
+          <img src="data/graphic/brand_4.jpg">
+      </div>
+      <div class="brand_element">
+          <img src="data/graphic/brand_5.jpg">
+          <div><p>대나무</p>담양의 대나무추출물은 피부에 수분을
+보충하여 보습력 유지 및 피부 탄력
+증진에 도움을 주고, 피부가 거칠어지는
+것을 예방하는 원료입니다.</div>
+      </div>
+      <div class="brand_element">
+          <div><p>진주</p>한국의 청정 자연에서 얻은 진주 성분은
+광채 나는 피부를 만듭니다. 진주는 건강,
+장수, 부를 상징하는 천연 보석으로 고대
+최고의 미인들이 밝은 얼굴을 위해
+사용한 원료입니다.</div>
+          <img src="data/graphic/brand_6.jpg">
+      </div>
+      <div class="brand_element">
+          <img src="data/graphic/brand_7.jpg">
+          <div><p>티벳 버섯</p>3대 장수마을인 코카서스 지방에서
+유래되어 티벳승려에 의해 널리 알려진
+발효비법으로 태어난 티벳버섯 발효유
+원료는 건강한 피부로 가꾸는데
+도움을 줍니다.</div>
+      </div>
+      <div class="brand_element">
+          <div><p>타마누 씨앗</p>타마누 씨앗은 오랫동안 폴리네시아인
+들에게 신의 성물이라 불려오는 진정에
+도움을 주는 원료입니다. 
+뛰어난 피부보호 효과로 예민하고 민감한 
+피부를 진정시키는데 도움을 줍니다.</div>
+          <img src="data/graphic/brand_8.jpg">
+      </div>
+      <div class="brand_element">
+          <img src="data/graphic/brand_9.jpg">
+          <div><p>잉글리시 브랙퍼스트 티</p>티에이징 공법에 따라 정성스레
+우려낸 허브티 성분 입니다.
+건조하고 지친 피부에 풍부한 보습을
+선사하여 피부를 촉촉하게
+가꾸어줍니다.</div>
+      </div>
+      <div class="brand_element">
+          <div><p>망고씨드</p>열대 과일의 왕으로 불리우며, 피부보호
+효과와 피부 유연성에 효과를 나타냄.
+특히나 씨앗에는 과육보다 폴리페놀이
+48배 많이 함유되어있어 촉촉하고
+건강한 피부를 가꾸어줍니다.</div>
+          <img src="data/graphic/brand_10.jpg">
+      </div>
+      <div class="brand_element">
+          <img src="data/graphic/brand_11.jpg">
+          <div><p>치아씨드</p>고대 아즈텍 문명에서 전사의
+식량으로도 사용되었으며. 자기 무게의
+약 10배 가량의 물을 흡수하여 천연
+수분막 형성하여 피부 속부터 촉촉하고
+맑은 피부로 가꾸어줍니다.</div>
+      </div>
+      
+      
+  </div>
+    
+    
+    
+    
+    <div id="footer"></div>
+</body>
+    
+    <script type="text/javascript" src="header.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $("#navigation").load("header.html");
+            $("#footer").load("footer.html");
+            flying_ani_initial();
+        });
+        
+        var category3_li = document.getElementsByClassName('category3')[0].getElementsByTagName('li');
+        for(i=0; i<category3_li.length; i++) {
+            category3_li[i].addEventListener('click', function() {
+                for(j=0; j<category3_li.length; j++) {
+                    category3_li[j].id = '';
+                }
+                this.id = 'category3_li_clicked';
+            });
+            }
+        
+        $('.brand_element').wrap('<div class="flying_ani_wrap"></div>');
+        function flying_ani_initial() {
+            $('.flying_ani_wrap:nth-of-type(2n+1)').css({'transform':'translateX(-100%)'});
+            $('.flying_ani_wrap:nth-of-type(2n)').css({'transform':'translateX(100%)'});
+            $('.flying_ani_wrap').css({'transition':'1s'});
+        }
+        
+        window.addEventListener('scroll', function() {
+            var flying_ani_wrap = document.getElementsByClassName('flying_ani_wrap');
+            var adjust = 800;
+            
+            for(i=0; i<flying_ani_wrap.length; i++) {
+                if(flying_ani_wrap[i].offsetTop-adjust <= window.pageYOffset) {
+                    $(flying_ani_wrap[i]).css({
+                        'transform' : 'translateX(0%)'
+                    })}}
+            if(window.pageYOffset == 0) {flying_ani_initial();}
+        });
+        
+    </script>
+</html>

@@ -1,0 +1,433 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" sizes="16x16 32x32" href="data/graphic/favicon.ico">
+<title>THE FACE SHOP REMAKE</title>
+    <link href="header.css" type="text/css" rel="stylesheet">
+    <link href="footer.css" type="text/css" rel="stylesheet">
+    <link href="common.css" type="text/css" rel="stylesheet">
+    
+    <style>
+        
+        .bg {width: 100%; height: 250px; background-size: cover; background-position: center right;}
+        
+        .category3_top {margin-top: 100px; margin-bottom: 20px;}
+        .category3_top div {float: right; font-size: 0.8em; color: #aaa;}
+        .category3_top h1 {float: left;}
+        .category3_top div:after {clear: both;}
+        
+        .category3 {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            z-index: 0;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .category3 ul {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .category3 ul::selection {color: #6d9811;}
+        .category3 li {
+            float: left;
+            display: inline-block;
+            width: 33.3%;
+            height: 100%;
+            line-height: 50px;
+            text-indent: 10px;
+            z-index: 9;
+            color: #3b322b;
+            font-size: 0.9em;
+        }
+        .category3 li:hover {color: #fff; background-color: #6d9811;}
+        .category3_column {
+            position: absolute;
+            height: 100%;
+            width: 1px;
+            background-color: #ddd;
+        }
+        .category3_column:nth-child(1) {left: 33.3%;}
+        .category3_column:nth-child(2) {left: 66.6%;}
+        
+        #category3_li_clicked {border: 1px solid #6d9811; box-sizing: border-box; color: #6d9811;}
+        #category3_li_clicked:hover {color: #fff;}
+        .category3 span {font-size: 0.9em; color: #aaa; margin-left: 5px;}
+        
+        
+        
+        .section_newsletter *{transition: all 0.6s ease;}
+        .section_newsletter li {
+            float: left;
+            width: 250px;
+            position: relative;
+            overflow: hidden;
+            perspective: 50em;
+        }
+        .section_newsletter ul {overflow: hidden;}
+        .section_newsletter ul li:nth-of-type(4n+4) {margin-left: 250px;}
+        .section_newsletter .inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%; 
+            padding: 30px 26px 40px;
+            background-color: rgba(0,0,0,1);
+            transform: rotateX(90deg);
+            transform-origin: 50% 100%;
+            opacity: 0;
+            z-index: 1;
+            border: 3px solid #6d9811;
+            box-sizing: border-box;
+        }
+        .section_newsletter .title {font-size: 16px; color: #bea36b; display: block; font-weight: 600;}
+        .section_newsletter .desc {
+            font-size: 16px;
+            color: #fff;
+            display: block;
+            padding: 15px 0 25px;
+            width: 100%; 
+        }
+        .section_newsletter .bg {opacity: 1; transform-origin: 50% 0;}
+        .section_newsletter li:hover .bg {transform: rotateX(-90deg); opacity: 0;}
+        .section_newsletter li:hover .inner {transform: rotateX(0deg); opacity: 1; transition-delay: 0.2s;}
+        
+        
+        .page {color: #777; margin: 20px 0 100px; text-align: center; font-size: 0.9em;}
+        .page a {margin: 0 10px;}
+        .page a:hover {color: #6d9811; font-weight: bold;}
+        .page span:hover {color: #6d9811; font-weight: bold; cursor: pointer;}
+        
+    </style>
+
+</head>
+<body>
+
+    <div id="navigation"></div>
+        
+    
+
+  <div class="wrap">
+      <div class="category3_top">
+          <h1>제품리뷰</h1>
+          <div><a href="index.html">홈</a> &#10095; <a href="#">제품리뷰</a></div>
+      </div>
+      <div class="category3">
+          <div class="category3_column"></div>
+          <div class="category3_column"></div>
+          <ul>
+              <li id="category3_li_clicked"><a href="javascript:;">뉴스레터</a><span></span></li>
+              <li><a href="javascript:;">한줄리뷰</a><span></span></li>
+              <li><a href="javascript:;">영상리뷰</a><span></span></li>
+              
+          </ul>
+      </div>
+
+        
+        <div class="section_newsletter">
+            
+            <div style="margin: 30px 100px 100px; min-height: 750px;">
+                <ul>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter1.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=317" target="_blank">
+                                <div class="title">완벽한 바캉스 케어!</div>
+                                <span class="desc">겨드랑이는 보송하게,<br>무더위에 지친 피부는 <br>시원하게!</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter2.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=316" target="_blank">
+                                <div class="title">스타일링 풀커버 스티커</div>
+                                <span class="desc">손톱 크기에 맞춰 붙이면<br>젤 네일 같은 광택감의 <br>네일아트 완성 ♥</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter3.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=315" target="_blank">
+                                <div class="title">안티에이징에 <br>수분을 더하다</div>
+                                <span class="desc">더테라피 퍼스트 세럼<br> &amp; 수분 블렌딩 크림</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter4.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=311" target="_blank">
+                                <div class="title">셀프네일</div>
+                                <span class="desc">곰손이라 고민이라면?</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter5.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=309" target="_blank">
+                                <div class="title">더페이스샵<br>워터프루프 라인</div>
+                                <span class="desc">물놀이에도,<br>땀과 유분에도,<br>메이크업만은 완벽 사수!!</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter6.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=307" target="_blank">
+                                <div class="title">이설의 리빙코랄 메이크업</div>
+                                <span class="desc">핑크와 오렌지가<br>오묘한 만남!</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter7.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=306" target="_blank">
+                                <div class="title">자연의 힘을<br>피부에 더하다!</div>
+                                <span class="desc">더페이스샵<br>씨드 라인</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter8.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">더테라피</div>
+                                <span class="desc">로얄 메이드 블렌딩 앰플</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter9.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">피부의 품격을 높이다!</div>
+                                <span class="desc">예화담 환생고 보윤라인</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter10.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">#기승전결<br>#피부톤결 오렌지세럼!</div>
+                                <span class="desc">닥터벨머 비타 세린 톤결 세럼</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter11.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">코랄의 상큼한 변주!</div>
+                                <span class="desc">달콤한 피크닉을 표현한<br>이지젤 스프링 컬렉션</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter12.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">한번에 간편하고 확실하게 지우자!</div>
+                                <span class="desc">올클리어 원샷 클렌징 오일<br>&nbsp;클렌징 오일 휩</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter13.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">피부 고민에 맞춰 골라 쓰는</div>
+                                <span class="desc">안티에이징 솔루션, <br>더테라피 세럼 트리오</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter14.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">시카 방어막!</div>
+                                <span class="desc">미세 스크래치까지 차단하다!</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter15.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">민감해도 괜찮아</div>
+                                <span class="desc">닥터벨머 UV 더마 SUN CARE</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter16.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">보습 영양 성분으로 <br>미세 주름까지</div>
+                                <span class="desc">예화담 천삼송이 자생 라인</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter17.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">무결점 베이스 메이크업<br>꿀조합!</div>
+                                <span class="desc">잉크래스팅 파운데이션 라인</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter18.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">더테라피</div>
+                                <span class="desc">안티에이징 라인</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter19.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">세안 후 더 촉촉한<br>고보습 클렌징!</div>
+                                <span class="desc">예화담 클렌징 라인</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter20.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">남자 피부 고민,<br>더 강력하게 케어하다!</div>
+                                <span class="desc">블랙밤 스킨/로션/크림 플루이드</span>
+                                </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg" style="background-image: url(data/graphic/newsletter21.jpg);"></div>
+                            <div class="inner">
+                                <a href="http://www.thefaceshop.com/brand/community/newsletter-view.jsp?seq=305" target="_blank">
+                                <div class="title">민감 손상 피부 케어,<br>더마 솔루션!</div>
+                                <span class="desc">닥터벨머 시카 앰플<br>&nbsp; 시카 크림</span>
+                                </a>
+                        </div>
+                    </li>
+                </ul>
+                
+                
+            </div>
+            
+            <div class="page">
+              <span>&#10094;</span>
+              <a href="javascript:show_newsletter_list(0);">1</a>
+              <a href="javascript:show_newsletter_list(1);">2</a>
+              <a href="javascript:show_newsletter_list(2);">3</a>
+              <span>&#10095;</span>
+          </div>
+        </div>
+      
+      
+  </div>
+    
+    
+    
+    
+    <div id="footer"></div>
+</body>
+    
+    <script type="text/javascript" src="header.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $("#navigation").load("header.html");
+            $("#footer").load("footer.html");
+            show_newsletter_list(0);
+        });
+        
+        var category3_li = document.getElementsByClassName('category3')[0].getElementsByTagName('li');
+        for(i=0; i<category3_li.length; i++) {
+            category3_li[i].addEventListener('click', function() {
+                for(j=0; j<category3_li.length; j++) {
+                    category3_li[j].id = '';
+                }
+                this.id = 'category3_li_clicked';
+            });
+            }
+        
+        var d_day = document.getElementsByClassName('section_newsletter')[0].getElementsByClassName('sale');
+        var ing_day = document.getElementsByClassName('section_newsletter')[0].getElementsByClassName('desc');
+        for(i=0; i<d_day.length; i++) {
+            var day = $(d_day[i]).text().replace('D-','');
+            day = Number(day);
+            var date = new Date();
+            var date_y = date.getFullYear();
+            var date_m = (date.getMonth()+1);
+            var date_d = date.getDate();
+            date.setDate(date.getDate()+day);
+            var date_plus_day_y = date.getFullYear();
+            var date_plus_day_m = (date.getMonth()+1);
+            var date_plus_day_d = date.getDate();
+            ing_day[i].innerHTML = date_y+'.'+date_m+'.'+date_d+'~'+date_plus_day_y+'.'+date_plus_day_m+'.'+date_plus_day_d;
+        }
+        
+        
+                var page = 0;
+                var page_a = document.getElementsByClassName('page')[0].getElementsByTagName('a');
+                var section_newsletter_li = document.getElementsByClassName('section_newsletter')[0].getElementsByTagName('li');
+                var page_span = document.getElementsByClassName('page')[0].getElementsByTagName('span');
+        
+        function show_newsletter_list(count) {
+                page = count;
+                if(page<0) page=0;
+                else if(page>=page_a.length) page=page_a.length-1;
+            
+                for(i=0; i<section_newsletter_li.length; i++) {
+                    section_newsletter_li[i].style.display = 'none';
+                }
+                for(i=0; i<8; i++) {
+                    if(section_newsletter_li[8*page+i]!=undefined) section_newsletter_li[8*page+i].style.display = 'block';
+                }
+                $('.page a').css({
+                        'color': '',
+                        'font-weight': '',
+                        'pointer-events': 'all'});
+            page_span[0].style.visibility = 'visible';
+            page_span[1].style.visibility = 'visible';
+                switch(page) {
+                    case 0: $('.page a:nth-child(2)').css({
+                        'color': '#6d9811',
+                        'font-weight': 'bold',
+                        'pointer-events': 'none'})
+                        page_span[0].style.visibility = 'hidden';
+                        break;
+                    case 1: $('.page a:nth-child(3)').css({
+                        'color': '#6d9811',
+                        'font-weight': 'bold',
+                        'pointer-events': 'none'})
+                        break;
+                    case 2: $('.page a:nth-child(4)').css({
+                        'color': '#6d9811',
+                        'font-weight': 'bold',
+                        'pointer-events': 'none'})
+                        page_span[1].style.visibility = 'hidden';
+                        break;
+                }
+        }
+                page_span[0].addEventListener('click', function() {
+                    show_newsletter_list(--page);
+                });
+                page_span[1].addEventListener('click', function() {
+                    show_newsletter_list(++page);
+                });
+        
+    </script>
+</html>

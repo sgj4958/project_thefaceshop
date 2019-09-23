@@ -1,0 +1,95 @@
+
+    <header>
+        <div class="top">
+            <ul>                
+                <li><a href="javascript:open_login();"><img src="data/graphic/person.png"><div class="img_text">회원정보</div></a></li>
+                <li><a href="store.html"><img src="data/graphic/shop.png"><div class="img_text">매장안내</div></a></li>
+                <li><a href="javascript:search();"><img src="data/graphic/magnifier.png"><div class="img_text">상품검색</div></a></li>
+            </ul>
+        </div>
+    </header>
+        <nav id="nav">
+            <a href="index.html"><div id="nav_logo" class="nav_logo_img"></div></a>
+            <div id="sub_background">
+                <a href="https://www.insight.co.kr/newsRead.php?ArtNo=79929">
+                <img src="data/graphic/suji.jpg">
+                    <div>
+                        <span style="color: #6d9811;">더테라피</span> 출시 2주년 30% 감사세일
+                    </div>
+                </a>
+            </div>
+            <ul>
+                <li><a href="sub_product.html">제품유형별</a>
+                    <dl class="sub">
+                        <dd><a href="sub_product.html">스킨케어</a></dd>
+                        <dd><a href="sub_product.html">마스크/팩</a></dd>
+                        <dd><a href="sub_product.html">클렌징</a></dd>
+                        <dd><a href="sub_product.html">베이스메이크업</a></dd>
+                        <dd><a href="sub_product.html">포인트메이크업</a></dd>
+                        <dd><a href="sub_product.html">바디/헤어</a></dd>
+                        <dd><a href="sub_product.html">향수/소품/네일</a></dd>
+                        <dd><a href="sub_product.html">선케어</a></dd>
+                        <dd><a href="sub_product.html">남성</a></dd>
+                    </dl>
+                </li>
+                <li><a href="sub_product_2.html">제품라인별</a>
+                    <dl class="sub">
+                        <dd><a href="sub_product_2.html">여성기초 라인</a></dd>
+                        <dd><a href="sub_product_2.html">선/남성기초 라인</a></dd>
+                        <dd><a href="sub_product_2.html">바디/헤어 라인</a></dd>
+                        <dd><a href="sub_product_2.html">마스크&amp;팩</a></dd>
+                    </dl>
+                </li>
+                <li><a href="best.html">베스트</a></li>
+                <li><a href="sale.html">행사상품</a></li>
+                <li><a href="new.html">신제품</a></li>
+                
+                <li><a href="event.html">이벤트</a>
+                    <dl class="sub">
+                        <dd><a href="event.html">진행중인 이벤트</a></dd>
+                        <dd><a href="event.html">매일매일 출첵!</a></dd>
+                        <dd><a href="event.html">뷰티 체험단</a></dd>
+                        <dd><a href="event.html">이벤트 당첨자 발표</a></dd>
+                    </dl>
+                </li>
+                <li><a href="brand.html">브랜드</a>
+                    <dl class="sub">
+                        <dd><a href="brand.html">브랜드 소개</a></dd>
+                        <dd><a href="brand.html">주요 제품 라인업</a></dd>
+                        <dd><a href="brand.html">사회공헌</a></dd>
+                        <dd><a href="brand.html">소식/공지</a></dd>
+                        <dd><a href="brand.html">광고 아카이브</a></dd>
+                        <dd><a href="brand.html">소비자중심경영(CCM)</a></dd>
+                    </dl>
+                </li>
+                <li><a href="review.html">제품리뷰</a>
+                    <dl class="sub">
+                        <dd><a href="review.html">뉴스레터</a></dd>
+                        <dd><a href="review.html">구매고객 리뷰</a></dd>
+                        <dd><a href="review.html">영상 리뷰</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </nav>
+
+        
+<div id="search" class="search_addani">
+    <div id="search_close" onclick="close_search();"></div>
+    <form action="search.html" accept-charset="utf-8" method="get">
+        <input type="text" name="search_input"><input type="submit" id="search_btn">
+        <div id="choose">
+            <a href="javascript:best_list();" class="choose_choice">인기검색어</a>
+            <a href="javascript:recent_list();">최근검색어</a>
+        </div>
+        <ul class="search_list" style="display: inherit;">
+            <li>#참고자료</li>
+            <li>#러쉬</li>
+            <li>#lush.co.kr</li>
+            <li>#더티</li>
+            <li>#민티</li>
+        </ul>
+        <ul class="search_list">
+            <li>최근 검색어가 없어요!</li>
+        </ul>
+    </form>
+</div>

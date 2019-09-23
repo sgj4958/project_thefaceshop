@@ -1,0 +1,191 @@
+
+        header, nav {min-width: 1900px;}
+
+        header ul, nav ul {list-style: none; float: right;}
+
+        div.top img {width: 60%; height: 60%; margin-top: 10px;}
+        .top li {display: inline-block; float: left; margin-left: 30px; position: relative;}
+        div.top {height: 50px; width: 100%; background-color: #3b322b; overflow: hidden;}
+        .top .img_text {
+            opacity: 0; 
+            color: white; 
+            text-align: center; 
+            font-size: 0.7em; 
+            position: absolute; 
+            top: 50%;
+            transform: translateX(-100%);
+            text-shadow: 0px 0px 5px yellow;
+        }
+        .top li:hover .img_text {opacity: 1; transform: translateX(0%); transition: 0.5s;}
+        .top li:hover img {transform: translateX(-100%); transition: 0.5s;}
+        .nav_logo_text {
+            width: 221px; 
+            height: 22px; 
+            background: url(data/graphic/thefaceshop_logo.png) no-repeat center center; 
+            float: left; 
+            margin: 20px; 
+            background-size: contain;
+            transition: 0.1s;
+        }
+        .nav_logo_img {
+            position: absolute;
+            left: 60px;
+            bottom: 0px;
+            background: url(data/graphic/thefaceshop_logo2.png) no-repeat center center; 
+            width: 110px; 
+            height: 110px; 
+            background-size: contain;
+            float: left;
+            transition: 0.1s;
+        }
+        nav li {line-height: 62px; width: 100px; text-align: center; height: 57px; display: inline-block; position: relative;}
+        nav li:hover {border-bottom: 5px solid #b68957;}
+        /*nav a {color: #3b322b;}*/
+        nav a:hover {color: #b68957;}
+        nav {
+            width: 100%; 
+            height: 62px; 
+            background-color: white; 
+            border-bottom: 2px solid #6d9811;
+            position: sticky;
+            top: 0;
+            z-index: 98;
+            transition: 1s;
+            position: relative;
+            box-sizing: border-box;
+        }
+        nav:after {clear: both;}
+        
+        .nav_change {background-color: rgba(255,255,255,0.8); transition: 1s;}
+        
+        nav li dl.sub {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            width: 200%;
+            z-index: 99;
+            left: 0%;
+            transform: translateX(-100%);
+            transition-duration: 0.2s;
+        }
+        nav li:hover dl.sub {visibility: visible; opacity: 1; transform: translateX(0); transition-duration: 0.3s;}
+        nav li dl.sub dd {text-indent: 10px;}
+        nav li dl.sub dd:hover {background-color: rgba(0,0,0,0.1);}
+        dl.sub dd {font-size: 0.8em; line-height: 40px; text-align: left;}
+        
+#sub_background {
+    position: absolute;
+    visibility: hidden;
+    left: 0;
+    top: 62px;
+    width: 100%;
+    height: 400px;
+    z-index: 96;
+    background-color: rgba(255,255,255,0.8);
+            border-bottom: 2px solid #6d9811;
+    padding: 30px;
+    box-sizing: border-box;
+}
+nav ul {z-index: 97; position: relative; margin-right: 100px;}
+nav:hover #sub_background {visibility: visible; animation-name: sub_background; animation-duration: .5s; animation-iteration-count: 1;}
+@keyframes sub_background {
+    from {width: 0;}
+    to {width: 100%;}
+}
+#sub_background img {height: 300px; margin-left: 10%;}
+#sub_background div {font-size: 1em; color: #b68957; font-weight: bold; margin-top: 20px; overflow: hidden; height: 20px; margin-left: 10%;}
+#sub_background span {font-size: 1.1em;}
+
+
+.sticky {
+  position: fixed;
+  top: 0;
+}
+
+
+    #search *{color: white;}
+    #search {
+        display: none;
+        background-color: rgba(0,0,0,0.9);
+        width: 100%; 
+        height: 100%;
+        vertical-align: middle;
+        position: absolute; 
+        text-align: center; 
+        z-index: 100;
+        left: 0%;
+        top: 0%;
+    }
+.search_addani {
+    animation-name: search_ani;
+    animation-duration: .7s;
+    animation-iteration-count: 1;
+}
+    @keyframes search_ani {
+            0% {transform: translateY(-100%);}
+            50% {transform: translateY(0%);}
+            52% {transform: translateY(0%);}
+            65% {transform: translateY(-5%);}
+            75% {transform: translateY(-5%);}
+            80% {transform: translateY(0%);}
+            81% {transform: translateY(0%);}
+            90% {transform: translateY(-2%);}
+            95% {transform: translateY(-2%);}
+            100% {transform: translateY(0);}
+    }
+    #search input[type=text] {
+        text-align: center; 
+        background-color: rgba(0,0,0,0); 
+        border: 0;
+        border-bottom: 3px solid #fff;
+        width: 50%;
+        height: 40px;
+        font-size: 2em;
+    }
+#search input[type=text]:focus {outline: 0;}
+        
+    #search form {margin-top: 20%;}
+    #search #search_btn {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        color: transparent;
+        background-color: transparent;
+        border: 0;
+        background-image: url(data/graphic/magnifier.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        cursor: pointer;
+        }
+    #search .search_list {display: none; text-align: center;}
+    #search #search_close {
+        position: absolute; 
+        right: 50px; 
+        top: 50px;
+        width: 60px;
+        height: 60px;
+        background-image: url(data/graphic/close_white.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        cursor: pointer;
+    }
+    #choose {margin: 2% 0; font-size: 1.2em; position: relative;}
+    #choose a:first-child {margin-right: 1%;}
+    #choose a:last-child {margin-left: 1%;}
+    #choose:after {
+        content: '';
+        width: 1px;
+        height: 70%;
+        position: absolute;
+        left: 50%;
+        top: 15%;
+        background-color: #fff;
+    }
+    .choose_choice {border-bottom: 3px solid #fff;}
+    .search_list li {font-size: 1.2em; margin-bottom: 0.2%; cursor: pointer; animation-name: li_fade; animation-duration: 1s; animation-iteration-count: 1;}
+    @keyframes li_fade {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
